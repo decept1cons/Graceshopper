@@ -6,7 +6,8 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {isEmail: true}
   },
   password: {
     type: Sequelize.STRING,
@@ -26,6 +27,10 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  cart: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+    //may change this. we are unsure if product id in the cart array will be a string or and actual number
   }
 })
 
