@@ -15,5 +15,6 @@ const Products = require('./products')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Products
 }
