@@ -27,17 +27,3 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
-
-// router.put('/cart/:productId', async (req, res, next) => {
-//   const productId = req.params.productId
-//   // const userId = req.session.user.id
-//   try {
-//     const user = await User.findById(Number(4))
-//     await user.addProducts(Number(productId))
-//     //const all = await user.getProducts();
-//     const products = await db.models.cart.findAll()
-//     res.send(products)
-//   } catch (error) {
-//     next(error)
-//   }
-// })

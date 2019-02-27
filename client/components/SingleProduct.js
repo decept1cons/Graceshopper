@@ -1,26 +1,34 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {fetchProduct} from '../store/productReducer'
 
-const dummyData = {
-  id: 2,
-  name: 'Product2',
-  imgUrl: 'http://worldartsme.com/images/box-clipart-1.jpg',
-  price: 10,
-  type: 'Anothing Thing',
-  skew: '1231ll'
-}
+class SingleProduct extends Component {
+  componentDidMount() {
+    this.props.getProduct(this.props.match.params.id)
+  }
 
-export default class SingleProduct extends Component {
   render() {
+    const {product} = this.props
     return (
       <div className="singleProductContainer">
         <div className="productCardImageContainer">
-          <img className="productCardImage" src={dummyData.imgUrl} />
+          <img className="productCardImage" src={product.imgUrl} />
         </div>
         <div className="productCardText">
-          <h1>{dummyData.name}</h1>
-          <h3>{dummyData.price}</h3>
+          <h1>{product.name}</h1>
+          <h3>{product.price}</h3>
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = ({productReducer}) => ({
+  product: productReducer.product
+})
+
+const mapDispatchToProps = dispatch => ({
+  getProduct: id => dispatch(fetchProduct(id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
