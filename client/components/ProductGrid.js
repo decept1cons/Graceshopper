@@ -1,14 +1,13 @@
 import React, {Component} from 'react'
-import Grid from '@material-ui/core/Grid'
-import ProductCard from './ProductCard'
-import {withStyles} from '@material-ui/core/styles'
 
-const styles = () => ({
-  card: {
-    height: 300,
-    width: 225
-  }
-})
+import ProductCard from './ProductCard'
+
+// const styles = () => ({
+//   card: {
+//     height: 300,
+//     width: 225
+//   }
+// })
 
 const dummyData = [
   {
@@ -38,18 +37,17 @@ const dummyData = [
     skew: 'asdas9d8123'
   }
 ]
-class ProductsGrid extends Component {
+export default class ProductGrid extends Component {
   render() {
-    const {classes} = this.props
+    // const {classes} = this.props
 
     return (
-      <Grid container spacing={32} justify="space-around">
+      <div id="productGridContainer">
         {dummyData.map(productObj => (
           <ProductCard key={productObj.id} product={productObj} />
         ))}
-      </Grid>
+      </div>
     )
   }
 }
-
-export default withStyles(styles)(ProductsGrid)
+//spacing={32} justify="space-around"

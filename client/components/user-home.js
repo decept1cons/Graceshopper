@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import ProductsGrid from './ProductsGrid'
+import ProductGrid from './ProductGrid'
 
 /**
  * COMPONENT
@@ -9,12 +9,7 @@ import ProductsGrid from './ProductsGrid'
 export const UserHome = props => {
   const {email} = props
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      <ProductsGrid />
-    </div>
-  )
+  return <ProductGrid />
 }
 
 /**
