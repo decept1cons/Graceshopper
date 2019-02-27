@@ -5,9 +5,6 @@ import {withRouter} from 'react-router-dom'
 import {auth} from '../store'
 import {Form, Input, Button, Container, Divider} from 'semantic-ui-react'
 
-/**
- * COMPONENT
- */
 const AuthForm = ({name, displayName, handleSubmit, error}) => (
   <Container textAlign="center">
     <Form onSubmit={handleSubmit} name={name}>
@@ -40,14 +37,6 @@ const AuthForm = ({name, displayName, handleSubmit, error}) => (
     <a href="/auth/google">{displayName} with Google</a>
   </Container>
 )
-
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = ({userReducer}) => {
   return {
     name: 'login',

@@ -27,10 +27,6 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
-  },
-  cart: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
-    //may change this. we are unsure if product id in the cart array will be a string or and actual number
   }
 })
 

@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {withRouter, NavLink} from 'react-router-dom'
 import ProductCard from './ProductCard'
 import {deleteProduct, fetchProducts} from '../store/productReducer'
-import {Container} from 'semantic-ui-react'
 
 const mapStateToProps = ({productReducer}) => ({
   products: productReducer.products
@@ -23,7 +22,6 @@ export default withRouter(
       componentDidMount() {
         this.props.fetchProducts()
       }
-
       handleDelete(product) {
         this.props.deleteProduct(product)
         this.props.fetchProducts()
