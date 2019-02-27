@@ -1,7 +1,7 @@
-/* @font-face {
+ @font-face {
   font-family: 'Transformers';
-  src: url('public/fonts/Transformers Movie.ttf');
-} */
+  src: url('./fonts/Transformers_Movie.ttf');
+}
 
 body {
   font-family: sans-serif;
@@ -74,7 +74,7 @@ form div {
 .productCardInner {
   display: flex;
   flex-direction: column;
-  background-color: #ddc1ed;
+  background-color: #ca9ae5;
   justify-content: center;
   border: 1px solid black;
   margin: auto;
