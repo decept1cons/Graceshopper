@@ -1,48 +1,45 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {withRouter} from 'react-router-dom'
 import {auth} from '../store'
 import {Form, Input, Button, Container, Divider} from 'semantic-ui-react'
 
 /**
  * COMPONENT
  */
-const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
-
-  return (
-    <Container textAlign="center">
-      <Form onSubmit={handleSubmit} name={name}>
-        <Form.Group widths="equal">
-          <Form.Field
-            id="form-input-control-name"
-            control={Input}
-            label="email"
-            placeholder="email"
-            name="email"
-            type="name"
-          />
-          <Form.Field
-            id="form-input-control-name"
-            control={Input}
-            label="password"
-            placeholder="password"
-            name="password"
-            type="password"
-          />
-        </Form.Group>
+const AuthForm = ({name, displayName, handleSubmit, error}) => (
+  <Container textAlign="center">
+    <Form onSubmit={handleSubmit} name={name}>
+      <Form.Group widths="equal">
         <Form.Field
-          id="form-button-control-public"
-          control={Button}
-          content="Submit"
+          id="form-input-control-name"
+          control={Input}
+          label="email"
+          placeholder="email"
+          name="email"
+          type="name"
         />
-        {error && error.response && <div> {error.response.data} </div>}
-      </Form>
-      <Divider />
-      <a href="/auth/google">{displayName} with Google</a>
-    </Container>
-  )
-}
+        <Form.Field
+          id="form-input-control-name"
+          control={Input}
+          label="password"
+          placeholder="password"
+          name="password"
+          type="password"
+        />
+      </Form.Group>
+      <Form.Field
+        id="form-button-control-public"
+        control={Button}
+        content="Submit"
+      />
+      {error && error.response && <div> {error.response.data} </div>}
+    </Form>
+    <Divider />
+    <a href="/auth/google">{displayName} with Google</a>
+  </Container>
+)
 
 /**
  * CONTAINER
@@ -51,19 +48,19 @@ const AuthForm = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = state => {
+const mapLogin = ({userReducer}) => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
+    error: userReducer.error
   }
 }
 
-const mapSignup = state => {
+const mapSignup = ({userReducer}) => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: userReducer.error
   }
 }
 
@@ -79,8 +76,8 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = withRouter(connect(mapLogin, mapDispatch)(AuthForm))
+export const Signup = withRouter(connect(mapSignup, mapDispatch)(AuthForm))
 
 /**
  * PROP TYPES

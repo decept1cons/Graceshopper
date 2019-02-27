@@ -47,6 +47,7 @@ form div {
 #productGridContainer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-top: 1vh;
   background-color: #ffffe7;
   justify-content: space-around;
@@ -61,15 +62,19 @@ form div {
   height: 35%;
   justify-content: 'center';
   align-items: 'center';
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .productCardContainer:hover {
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: scale(1.025);
 }
 .productCardInner {
   display: flex;
   flex-direction: column;
-  background-color: #dde8f1;
+  background-color: #ddc1ed;
   justify-content: center;
   border: 1px solid black;
   margin: auto;
@@ -80,6 +85,7 @@ form div {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  margin-bottom: 10px;
   height: 70%;
   width: 100%;
 }
@@ -97,10 +103,12 @@ form div {
 
 .productTitle {
   font-size: 2vw;
+  text-align: center;
   color: #000;
 }
 .productPrice {
   font-size: 1vw;
+  text-align: center;
   color: #000;
 }
 
