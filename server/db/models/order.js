@@ -6,8 +6,15 @@ const Order = db.define('order', {
     type: Sequelize.BOOLEAN,
     defaultValue: true
   },
-  products: {
-    type: Sequelize.ARRAY(Sequelize.INT)
+  gsId: {
+    type: Sequelize.INTEGER
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1
+  },
+  price: {
+    type: Sequelize.FLOAT
   }
 })
 

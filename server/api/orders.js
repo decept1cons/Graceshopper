@@ -1,11 +1,12 @@
 const router = require('express').Router()
-const {Orders} = require('../db/models')
+const {Order} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
-    const response = await Orders.findAll()
+    const response = await Order.findAll()
+    console.log(response)
     res.json({
-      message: 'Welcome!!!!'
+      "here's the data": response
     })
   } catch (error) {
     console.log(error)
