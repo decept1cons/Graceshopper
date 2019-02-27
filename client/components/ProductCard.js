@@ -14,11 +14,11 @@ export default class ProductCard extends Component {
       <Link to={`/products/${product.id}`} className="productCardContainer">
         <div className="productCardInner">
           <div className="productCardImageContainer">
-            <img className="productCardImage" src={product.imgUrl} />
+            <img className="productCardImage" src={product.imageUrl} />
           </div>
           <div className="productCardText">
-            <h1>{product.name}</h1>
-            <h3>{product.price}</h3>
+            <div className="productTitle">{product.name}</div>
+            <div className="productPrice">{product.price}</div>
           </div>
         </div>
       </Link>

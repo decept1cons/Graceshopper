@@ -31,26 +31,146 @@ async function seed() {
   ]
 
   const fakeProducts = [
-    {name: 'Tracker', type: 'Geo', price: '23265.59'},
-    {name: 'Impala', type: 'Chevrolet', price: '15542.74'},
-    {name: '911', type: 'Porsche', price: '79241.07'},
-    {name: 'Pacifica', type: 'Chrysler', price: '23489.51'},
-    {name: 'X5 M', type: 'BMW', price: '34264.34'},
-    {name: 'Tacoma Xtra', type: 'Toyota', price: '19142.72'},
-    {name: 'Sentra', type: 'Nissan', price: '20720.80'},
-    {name: 'Pathfinder Armada', type: 'Nissan', price: '29463.50'},
-    {name: 'CX-5', type: 'Mazda', price: '27564.40'},
-    {name: 'Diablo', type: 'Lamborghini', price: '170030.69'},
-    {name: '900', type: 'Saab', price: '18849.89'},
-    {name: 'Escape', type: 'Ford', price: '22257.88'},
-    {name: 'Ram', type: 'Dodge', price: '18007.67'},
-    {name: 'ES 350 FSport', type: 'Lexus', price: '45585.57'},
-    {name: '3500', type: 'GMC', price: '20556.84'},
-    {name: 'Dakota', type: 'Dodge', price: '22630.25'},
-    {name: 'Mustang', type: 'Ford', price: '24386.94'},
-    {name: 'Grand Marquis', type: 'Mercury', price: '27235.79'},
-    {name: 'a3', type: 'Audi', price: '35006.47'},
-    {name: 'Passat', type: 'Volkswagen', price: '22598.57'}
+    {
+      name: 'Tracker',
+      type: 'Geo',
+      price: '23265.59',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Impala',
+      type: 'Chevrolet',
+      price: '15542.74',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: '911',
+      type: 'Porsche',
+      price: '79241.07',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Pacifica',
+      type: 'Chrysler',
+      price: '23489.51',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'X5 M',
+      type: 'BMW',
+      price: '34264.34',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Tacoma Xtra',
+      type: 'Toyota',
+      price: '19142.72',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Sentra',
+      type: 'Nissan',
+      price: '20720.80',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Pathfinder',
+      type: 'Nissan',
+      price: '29463.50',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'CX-5',
+      type: 'Mazda',
+      price: '27564.40',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Diablo',
+      type: 'Lamborghini',
+      price: '170030.69',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: '900',
+      type: 'Saab',
+      price: '18849.89',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Escape',
+      type: 'Ford',
+      price: '22257.88',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Ram',
+      type: 'Dodge',
+      price: '18007.67',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'ES 350 FSport',
+      type: 'Lexus',
+      price: '45585.57',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: '3500',
+      type: 'GMC',
+      price: '20556.84',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Dakota',
+      type: 'Dodge',
+      price: '22630.25',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Mustang',
+      type: 'Ford',
+      price: '24386.94',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Grand Marquis',
+      type: 'Mercury',
+      price: '27235.79',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'a3',
+      type: 'Audi',
+      price: '35006.47',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    },
+    {
+      name: 'Passat',
+      type: 'Volkswagen',
+      price: '22598.57',
+      imageUrl:
+        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+    }
   ]
 
   const users = await Promise.all(
