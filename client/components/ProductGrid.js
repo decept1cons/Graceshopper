@@ -2,13 +2,6 @@ import React, {Component} from 'react'
 
 import ProductCard from './ProductCard'
 
-// const styles = () => ({
-//   card: {
-//     height: 300,
-//     width: 225
-//   }
-// })
-
 const dummyData = [
   {
     id: 1,
