@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {auth} from '../store'
 import {Form, Input, Button, Container, Divider} from 'semantic-ui-react'
 
@@ -34,7 +34,13 @@ const AuthForm = ({name, displayName, handleSubmit, error}) => (
       {error && error.response && <div> {error.response.data} </div>}
     </Form>
     <Divider />
-    <a href="/auth/google">{displayName} with Google</a>
+    <Link to="/guestHome">
+      <Button>Continue as Guest</Button>
+    </Link>
+
+    <Button color="google plus" href="/auth/google">
+      {displayName} with Google
+    </Button>
   </Container>
 )
 const mapLogin = ({userReducer}) => {
