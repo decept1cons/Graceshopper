@@ -17,14 +17,14 @@ const Navbar = ({handleClick, isLoggedIn, user}) => (
             Logout
           </a>
           <Link to="/account">My Account</Link>
-          <span className="welcomeEmail">Hi, {user.email} !</span>
+          <span className="welcomeEmail"> Hi, {user.email} !</span>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <Link to="/cart">Cart</Link>
+          <Link to="/guestCart">Cart</Link>
         </div>
       )}
     </nav>
