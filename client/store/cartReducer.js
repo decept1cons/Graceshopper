@@ -29,13 +29,22 @@ export const fetchCart = id => async dispatch => {
   const {data} = await axios.get(`/api/cart/${id}`)
   return dispatch(getCart(data))
 }
-export const addProductToCart = (product, id) => async dispatch => {
-  const {data} = await axios.post(`/api/cart/${id}/${product.id}`, product)
+export const addProductToCart = (
+  productId,
+  userId,
+  price
+) => async dispatch => {
+  console.log('DISPATCH', productId, userId, price)
+  const {data} = await axios.post(`/api/cart/${userId}`, {
+    productId,
+    userId,
+    price
+  })
   return dispatch(addToCart(data))
 }
 
 export const removeProductFromCart = (product, id) => async dispatch => {
-  const {data} = await axios.delete(`/api/cart/${id}/${product.id}`)
+  const {data} = await axios.delete(`/api/cart/${id}/product/${product.id}`)
   return dispatch(removeFromCart(data))
 }
 

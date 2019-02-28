@@ -1,4 +1,4 @@
- @font-face {
+@font-face {
   font-family: 'Transformers';
   src: url('./fonts/Transformers_Movie.ttf');
 }
@@ -101,6 +101,10 @@ form div {
   justify-content: center;
 }
 
+.cartItemImage {
+  height: 10vh;
+  width: 10vw;
+}
 .productTitle {
   font-size: 2vw;
   text-align: center;
