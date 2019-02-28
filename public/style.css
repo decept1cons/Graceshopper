@@ -1,4 +1,4 @@
- @font-face {
+@font-face {
   font-family: 'Transformers';
   src: url('./fonts/Transformers_Movie.ttf');
 }
@@ -110,6 +110,11 @@ form div {
   font-size: 1vw;
   text-align: center;
   color: #000;
+}
+
+.welcomeEmail {
+  font-size: 15px;
+  color: white;
 }
 
 /*
