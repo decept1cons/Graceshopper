@@ -116,6 +116,11 @@ form div {
   color: #000;
 }
 
+.welcomeEmail {
+  font-size: 15px;
+  color: white;
+}
+
 /*
  * # Semantic UI - 2.3.1
  * https://github.com/Semantic-Org/Semantic-UI
