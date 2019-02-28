@@ -185,9 +185,9 @@ async function seed() {
   })
 
   const test = await Order.create({
-    userId: testGuy.id,
-    productId: car.id,
-    price: car.price
+    userId: 1,
+    productId: 1,
+    price: 1
   })
 
   const test2 = await Order.create({
