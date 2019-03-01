@@ -8,7 +8,7 @@ import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import ProductGrid from './components/ProductGrid'
 import UserAccount from './components/user-account'
-import {OfflineCart} from './components/OfflineCart'
+import OfflineCart from './components/OfflineCart'
 /**
  * COMPONENT
  */

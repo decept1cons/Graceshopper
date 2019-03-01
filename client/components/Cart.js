@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 import {fetchCart} from '../store/cartReducer'
 import CartItem from './CartItem'
 import {Table} from 'semantic-ui-react'
-import {OfflineCart} from './OfflineCart'
+
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   userId: userReducer.id,
   cart: cartReducer.cart
@@ -44,8 +44,6 @@ export default withRouter(
               </Table.Body>
             </Table>
           )
-        } else {
-          return <OfflineCart />
         }
       }
     }
