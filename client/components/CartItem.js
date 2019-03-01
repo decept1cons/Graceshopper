@@ -2,7 +2,7 @@
 import React from 'react'
 import {Table, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {removeProductFromCart, fetchCart} from '../store/cartReducer'
 
 const mapDispatchToProps = dispatch => ({
@@ -29,7 +29,9 @@ export default withRouter(
       return (
         <Table.Row>
           <Table.Cell>
-            <img className="cartItemImage" src={imageUrl} />
+            <Link to={`/products/${productId}`}>
+              <img className="cartItemImage" src={imageUrl} />
+            </Link>
           </Table.Cell>
           <Table.Cell>{name}</Table.Cell>
           <Table.Cell>{`$${price}`}</Table.Cell>
