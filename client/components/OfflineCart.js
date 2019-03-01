@@ -4,33 +4,33 @@ import {withRouter} from 'react-router-dom'
 import {fetchCart} from '../store/cartReducer'
 import CartItem from './CartItem'
 import {Table} from 'semantic-ui-react'
+import ls from 'local-storage'
 
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   userId: userReducer.id,
   cart: cartReducer.cart
 })
 
-const mapDispatchToProps = dispatch => ({
-  getCart: id => dispatch(fetchCart(id))
-})
+// const mapDispatchToProps = dispatch => ({
+//   getCart: id => dispatch(fetchCart(id))
+// })
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(
+  connect(mapStateToProps)(
     class OfflineCart extends Component {
       componentDidMount() {
         const {getCart, userId} = this.props
-        getCart(userId)
-        localStorage.setItem('cart', JSON.stringify(this.props.cart))
+        // getCart(userId)
       }
 
       // foo() {}
       render() {
-        console.log(this.props.cart)
+        const cart = Object.values(window.localStorage)
+        const someData = cart.map(item => JSON.parse(item))
+        console.log(someData)
 
         //START OF T&T's CODE ----------------------------------------------------------------------
-        const jsonData = localStorage.getItem('cart')
-        const cartProducts = JSON.parse(jsonData)
-        console.log(cartProducts)
+
         return (
           <Table singleLine>
             <Table.Header>
@@ -44,9 +44,9 @@ export default withRouter(
             </Table.Header>
 
             <Table.Body>
-              {/* {this.props.cart.map(cartObj => (
-                <CartItem cart={cartObj} key={cartObj.id} />
-              ))} */}
+              {someData.map((cartObj, i) => (
+                <CartItem cart={cartObj} key={i} />
+              ))}
             </Table.Body>
           </Table>
         )

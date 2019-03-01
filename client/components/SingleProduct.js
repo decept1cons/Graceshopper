@@ -4,6 +4,8 @@ import {withRouter} from 'react-router-dom'
 import {fetchProduct} from '../store/productReducer'
 import {addProductToCart} from '../store/cartReducer'
 import {Button, Icon} from 'semantic-ui-react'
+import ls from 'local-storage'
+let count = 0
 
 const mapStateToProps = ({userReducer, productReducer}) => ({
   userId: userReducer.id,
@@ -25,6 +27,7 @@ export default withRouter(
 
       render() {
         const {product, userId} = this.props
+
         console.log(userId)
         return (
           <div className="singleProductContainer">
@@ -39,8 +42,8 @@ export default withRouter(
               animated="vertical"
               className="singleProductButton"
               onClick={() => {
-                console.log('hi')
                 this.props.addProduct(product.id, userId, product.price)
+                ls.set(count++, product)
               }}
             >
               <Button.Content hidden>
