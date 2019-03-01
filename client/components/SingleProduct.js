@@ -29,25 +29,30 @@ export default withRouter(
         console.log(userId)
         return (
           <div className="singleProductContainer">
-            <div className="singleProductImageContainer">
-              <img className="singleProductImage" src={product.imageUrl} />
+            <div className="singleProductInner">
+              <div className="singleProductImageContainer">
+                <img className="singleProductImage" src={product.imageUrl} />
+              </div>
+              <div className="singleProductText">
+                <h1>{product.name}</h1>
+                <h3>{product.price}</h3>
+              </div>
             </div>
-            <div className="singleProductText">
-              <h1>{product.name}</h1>
-              <h3>{product.price}</h3>
+            <div className="singleProductButton">
+              <Button
+                animated="vertical"
+                color="orange"
+                id="singleProductButtonId"
+                onClick={() => {
+                  this.props.addProduct(product.id, userId, product.price)
+                }}
+              >
+                <Button.Content hidden>
+                  <Icon name="shop" />
+                </Button.Content>
+                <Button.Content visible>Add to Cart</Button.Content>
+              </Button>
             </div>
-            <Button
-              animated="vertical"
-              className="singleProductButton"
-              onClick={() => {
-                this.props.addProduct(product.id, userId, product.price)
-              }}
-            >
-              <Button.Content hidden>
-                <Icon name="shop" />
-              </Button.Content>
-              <Button.Content visible>Add to Cart</Button.Content>
-            </Button>
           </div>
         )
       }
