@@ -18,14 +18,19 @@ const initialState = {
  * ACTION CREATORS
  */
 export const getCart = cart => ({type: GET_CART, cart})
-export const addToCart = product => ({type: ADD_TO_CART, product})
-export const removeFromCart = product => ({type: REMOVE_FROM_CART, product})
+export const addToCart = ({eagerLoadedOrder, create}) => ({
+  type: ADD_TO_CART,
+  eagerLoadedOrder,
+  create
+})
+export const removeFromCart = id => ({type: REMOVE_FROM_CART, id})
 
 /**
  * THUNK CREATORS
  */
 
 export const fetchCart = id => async dispatch => {
+  console.log('fetch', id)
   const {data} = await axios.get(`/api/cart/${id}`)
   return dispatch(getCart(data))
 }
@@ -34,18 +39,18 @@ export const addProductToCart = (
   userId,
   price
 ) => async dispatch => {
-  console.log('DISPATCH', productId, userId, price)
   const {data} = await axios.post(`/api/cart/${userId}`, {
     productId,
     userId,
     price
   })
+
   return dispatch(addToCart(data))
 }
 
-export const removeProductFromCart = (product, id) => async dispatch => {
-  const {data} = await axios.delete(`/api/cart/${id}/product/${product.id}`)
-  return dispatch(removeFromCart(data))
+export const removeProductFromCart = (orderId, userId) => async dispatch => {
+  await axios.delete(`/api/cart/${userId}/item/${orderId}`)
+  return dispatch(removeFromCart(orderId))
 }
 
 /**
@@ -60,16 +65,27 @@ export default function(state = initialState, action) {
         cart: action.cart
       }
     case ADD_TO_CART:
-      return {
-        ...state,
-        cart: [...state.cart, action.product]
+      if (action.create) {
+        return {
+          ...state,
+          cart: [...state.cart, action.eagerLoadedOrder]
+        }
+      } else {
+        return {
+          ...state,
+          cart: state.cart.map(order => {
+            if (order.id === action.eagerLoadedOrder.id) {
+              order = action.eagerLoadedOrder
+            }
+            return order
+          })
+        }
       }
+
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cart: [
-          ...state.cart.filter(product => product.id !== action.product.id)
-        ]
+        cart: [...state.cart.filter(product => product.id !== action.id)]
       }
     default:
       return state

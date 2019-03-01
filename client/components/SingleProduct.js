@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {fetchProduct} from '../store/productReducer'
+import {getUser} from '../store/userReducer'
 import {addProductToCart} from '../store/cartReducer'
 import {Button, Icon} from 'semantic-ui-react'
 
@@ -39,7 +40,6 @@ export default withRouter(
               animated="vertical"
               className="singleProductButton"
               onClick={() => {
-                console.log('hi')
                 this.props.addProduct(product.id, userId, product.price)
               }}
             >
