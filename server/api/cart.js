@@ -5,7 +5,7 @@ router.get('/:id', async (req, res, next) => {
   const userId = req.params.id
   try {
     const response = await Order.findAll({
-      where: {userId},
+      where: {userId, status: 'OPEN'},
       include: [
         {
           model: Product,
@@ -54,6 +54,19 @@ router.post('/:id', async (req, res, next) => {
     console.log(error)
     next(error)
   }
+})
+router.put('/:id', async (req, res, next) => {
+  const userId = req.params.id
+  const gsId = userId + '-' + Date.now()
+  Order.update(
+    {status: 'PAID', gsId},
+    {
+      where: {userId, status: 'OPEN'},
+      returning: true
+    }
+  )
+    .then(([numRow, rows]) => res.json(rows))
+    .catch(next)
 })
 router.delete('/:id/item/:orderId', (req, res, next) => {
   const id = req.params.orderId

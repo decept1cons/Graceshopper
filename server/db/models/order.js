@@ -3,11 +3,12 @@ const db = require('../db')
 
 const Order = db.define('order', {
   status: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true
+    type: Sequelize.STRING,
+    defaultValue: 'OPEN'
+    //open, paid, shipped, submitted
   },
   gsId: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING
   },
   quantity: {
     type: Sequelize.INTEGER,

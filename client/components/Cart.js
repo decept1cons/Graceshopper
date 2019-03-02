@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {fetchCart} from '../store/cartReducer'
-import CartItem from './CartItem'
-import {Table} from 'semantic-ui-react'
+import CartTable from './CartTable'
+
+import {Table, Button, Icon} from 'semantic-ui-react'
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   userId: userReducer.id,
   cart: cartReducer.cart
@@ -23,23 +24,20 @@ export default withRouter(
       }
       render() {
         return (
-          <Table singleLine>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell />
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Price</Table.HeaderCell>
-                <Table.HeaderCell>Quantity</Table.HeaderCell>
-                <Table.HeaderCell>Remove</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-
-            <Table.Body>
-              {this.props.cart.map(cartObj => (
-                <CartItem cart={cartObj} key={cartObj.id} />
-              ))}
-            </Table.Body>
-          </Table>
+          <div>
+            <CartTable cart={this.props.cart} />
+            <Link to="/cart/checkout">
+              <Button animated="vertical" id="singleButton">
+                <Button.Content visible>
+                  <Icon.Group size="large">
+                    <Icon name="shop" />
+                    <Icon corner name="check circle" id="iconCheck" />
+                  </Icon.Group>
+                </Button.Content>
+                <Button.Content hidden>Checkout</Button.Content>
+              </Button>
+            </Link>
+          </div>
         )
       }
     }

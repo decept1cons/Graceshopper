@@ -8,6 +8,7 @@ import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import ProductGrid from './components/ProductGrid'
 import UserAccount from './components/user-account'
+import Checkout from './components/Checkout'
 /**
  * COMPONENT
  */
@@ -31,8 +32,9 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/products/:id" component={SingleProduct} />
-            <Route path="/cart" component={Cart} />
+            <Route exact path="/cart" component={Cart} />
             <Route path="/account" component={UserAccount} />
+            <Route path="/cart/checkout" component={Checkout} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

@@ -41,7 +41,7 @@ export default withRouter(
             <div className="singleProductButton">
               <Button
                 animated="vertical"
-                id="singleProductButtonId"
+                id="singleButton"
                 onClick={() => {
                   this.props.addProduct(product.id, userId, product.price)
                 }}
