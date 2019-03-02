@@ -163,6 +163,10 @@ form div {
   background-color: #ff9900;
 }
 
+.search-bar {
+  text-align: center;
+}
+
 /*
  * # Semantic UI - 2.3.1
  * https://github.com/Semantic-Org/Semantic-UI
