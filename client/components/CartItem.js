@@ -25,7 +25,6 @@ export default withRouter(
       removeProduct,
       getCart
     }) => {
-      console.log('CARTITEM', name)
       return (
         <Table.Row>
           <Table.Cell>

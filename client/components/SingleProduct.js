@@ -26,7 +26,7 @@ export default withRouter(
 
       render() {
         const {product, userId} = this.props
-        console.log(userId)
+
         return (
           <div className="singleProductContainer">
             <div className="singleProductInner">
@@ -41,7 +41,6 @@ export default withRouter(
             <div className="singleProductButton">
               <Button
                 animated="vertical"
-                color="orange"
                 id="singleProductButtonId"
                 onClick={() => {
                   this.props.addProduct(product.id, userId, product.price)

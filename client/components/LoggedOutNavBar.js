@@ -3,7 +3,7 @@ import React from 'react'
 import {Icon} from 'semantic-ui-react'
 import {Link, withRouter} from 'react-router-dom'
 
-export default props => (
+export default ({quantity}) => (
   <div className="navigationLoggedOut">
     <Link to="/login">
       <h1 className="navLink">DECEPTICONS</h1>

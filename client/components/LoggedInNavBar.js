@@ -1,9 +1,9 @@
 /* eslint-disable react/display-name */
 import React from 'react'
-import {Icon} from 'semantic-ui-react'
+import {Button, Label, Icon} from 'semantic-ui-react'
 import {Link, withRouter} from 'react-router-dom'
 
-export default ({handleClick, email}) => (
+export default ({handleClick, quantity, email}) => (
   <div className="navigationLoggedIn">
     <Link to="/home">
       <h1 className="navLink">DECEPTICONS</h1>
@@ -14,7 +14,14 @@ export default ({handleClick, email}) => (
         <Icon name="home" />
       </Link>
       <Link className="navLink" to="/cart">
-        <Icon name="shop" />
+        <Button as="div" labelPosition="left">
+          <Label basic pointing="right">
+            {quantity}
+          </Label>
+          <Button icon>
+            <Icon name="shop" />
+          </Button>
+        </Button>
       </Link>
       <a href="#" className="navLink" onClick={handleClick}>
         <Icon name="sign-out" />

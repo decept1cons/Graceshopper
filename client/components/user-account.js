@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 class UserAccount extends Component {
   render() {
-    console.log(this.props.product)
     return (
       <div>
         <Container textAlign="center">This is your account page </Container>

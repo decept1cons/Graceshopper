@@ -3,10 +3,7 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
-const GET_CART = 'GET_CART'
-const ADD_TO_CART = 'ADD_TO_CART'
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-const SUBMIT_CART = 'SUBMIT_CART'
+
 /**
  * INITIAL STATE
  */
@@ -17,13 +14,6 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-export const getCart = cart => ({type: GET_CART, cart})
-export const addToCart = ({eagerLoadedOrder, create}) => ({
-  type: ADD_TO_CART,
-  eagerLoadedOrder,
-  create
-})
-export const removeFromCart = id => ({type: REMOVE_FROM_CART, id})
 
 /**
  * THUNK CREATORS

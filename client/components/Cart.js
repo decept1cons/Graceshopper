@@ -18,11 +18,10 @@ export default withRouter(
     class Cart extends Component {
       componentDidMount() {
         const {getCart, userId} = this.props
-        console.log('here', userId)
+
         getCart(userId)
       }
       render() {
-        console.log(this.props.cart)
         return (
           <Table singleLine>
             <Table.Header>
