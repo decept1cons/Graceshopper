@@ -52,7 +52,9 @@ export default withRouter(
             <div id="productGridContainer">
               {this.props.products
                 .filter(item => {
-                  return item.name.toLowerCase().includes(this.state.searchWord)
+                  return item.name
+                    .toLowerCase()
+                    .includes(this.state.searchWord.toLowerCase())
                 })
                 .map(productObj => (
                   <ProductCard key={productObj.id} product={productObj} />
