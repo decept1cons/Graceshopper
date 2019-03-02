@@ -16,7 +16,7 @@ export default props => (
       <Link className="navLink" to="/login">
         <Icon name="sign-in" />
       </Link>
-      <Link className="navLink" to="/cart">
+      <Link className="navLink" to="/guestCart">
         <Icon name="shop" />
       </Link>
     </div>

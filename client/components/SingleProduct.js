@@ -28,7 +28,7 @@ export default withRouter(
 
       render() {
         const {product, userId} = this.props
-
+        const max = Object.keys(window.localStorage)
         console.log(userId)
         return (
           <div className="singleProductContainer">
@@ -48,7 +48,9 @@ export default withRouter(
                 id="singleProductButtonId"
                 onClick={() => {
                   this.props.addProduct(product.id, userId, product.price)
-                  ls.set(count++, product)
+                  if (!ls.get(count)) {
+                    ls.set(count++, product)
+                  }
                 }}
               >
                 <Button.Content hidden>

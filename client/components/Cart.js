@@ -19,7 +19,6 @@ export default withRouter(
     class Cart extends Component {
       componentDidMount() {
         const {getCart, userId} = this.props
-        console.log('here', userId)
         getCart(userId)
       }
       render() {
