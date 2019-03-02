@@ -28,8 +28,6 @@ export default withRouter(
 
       render() {
         const {product, userId} = this.props
-        const max = Object.keys(window.localStorage)
-        console.log(userId)
         return (
           <div className="singleProductContainer">
             <div className="singleProductInner">
