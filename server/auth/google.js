@@ -2,7 +2,6 @@ const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const {User} = require('../db/models')
-module.exports = router
 
 /**
  * For OAuth keys and other secrets, your Node process will search
@@ -18,40 +17,57 @@ module.exports = router
  * process.env.GOOGLE_CALLBACK = '/your/google/callback'
  */
 
-if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-  console.log('Google client ID / secret not found. Skipping Google OAuth.')
-} else {
-  const googleConfig = {
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK
-  }
-
-  const strategy = new GoogleStrategy(
-    googleConfig,
-    (token, refreshToken, profile, done) => {
-      const googleId = profile.id
-      const name = profile.displayName
-      const email = profile.emails[0].value
-
-      User.findOrCreate({
-        where: {googleId},
-        defaults: {name, email}
-      })
-        .then(([user]) => done(null, user))
-        .catch(done)
-    }
-  )
-
-  passport.use(strategy)
-
-  router.get('/', passport.authenticate('google', {scope: 'email'}))
-
-  router.get(
-    '/callback',
-    passport.authenticate('google', {
-      successRedirect: '/home',
-      failureRedirect: '/login'
-    })
-  )
+// if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+//   console.log('Google client ID / secret not found. Skipping Google OAuth.')
+// } else {
+const googleConfig = {
+  clientID:
+    '1075301925285-0abvksjvgtfnhsgpsigtlkplh685inhf.apps.googleusercontent.com',
+  clientSecret: 'fnGSi858zQXyp4sx9j8hreC-',
+  callbackURL: 'auth/google/callback'
 }
+
+const strategy = new GoogleStrategy(
+  googleConfig,
+  (token, refreshToken, profile, done) => {
+    console.log(profile)
+    const googleId = profile.id
+    const name = profile.displayName
+    const email = profile.emails[0].value
+
+    User.findOrCreate({
+      where: {googleId},
+      defaults: {name, email}
+    })
+      .then(([user]) => done(null, user))
+      .catch(done)
+  }
+)
+
+passport.use(strategy)
+
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id)
+    done(null, user)
+  } catch (error) {
+    done(error)
+  }
+})
+
+router.get('/', passport.authenticate('google', {scope: 'email'}))
+
+router.get(
+  '/callback',
+  passport.authenticate('google', {
+    successRedirect: '/home',
+    failureRedirect: ''
+  })
+)
+// }
+
+module.exports = router
