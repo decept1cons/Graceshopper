@@ -11,6 +11,7 @@ export default ({cart}) => (
         <Table.HeaderCell>Name</Table.HeaderCell>
         <Table.HeaderCell>Price</Table.HeaderCell>
         <Table.HeaderCell>Quantity</Table.HeaderCell>
+        <Table.HeaderCell>Buttons</Table.HeaderCell>
         <Table.HeaderCell>Remove</Table.HeaderCell>
       </Table.Row>
     </Table.Header>

@@ -12,7 +12,11 @@ const Order = db.define('order', {
   },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 1
+    defaultValue: 1,
+    validate: {
+      min: 1,
+      max: 1000000 //ha
+    }
   },
   price: {
     type: Sequelize.FLOAT

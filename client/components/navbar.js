@@ -9,7 +9,7 @@ import {_calcQuantity} from '../helperfuncs/calcQuantity'
 
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   user: userReducer,
-  isLoggedIn: !!userReducer.id,
+  // isLoggedIn: !!userReducer.id,
   cart: cartReducer.cart
 })
 
@@ -22,21 +22,25 @@ export default withRouter(
       state = {
         quantity: 0
       }
+      componentDidMount() {
+        console.log('mount', this.props.cart, new Date())
+        const quantity = _calcQuantity(this.props.cart)
+        this.setState({quantity})
+      }
 
       render() {
         const {handleClick, isLoggedIn, user} = this.props
+        console.log('render', this.props.cart, new Date())
         return (
           <nav>
             {isLoggedIn ? (
               <LoggedInNavBar
                 handleClick={handleClick}
                 email={user.email}
-                quantity={_calcQuantity(this.props.cart, 'quantity')}
+                quantity={this.state.quantity}
               />
             ) : (
-              <LoggedOutNavBar
-                quantity={_calcQuantity(this.props.cart, 'quantity')}
-              />
+              <LoggedOutNavBar quantity={this.state.quantity} />
             )}
           </nav>
         )

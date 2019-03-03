@@ -166,6 +166,10 @@ form div {
 #iconCheck {
   color: #2e9a00;
 }
+.completedOrderDisplay {
+  border-color: #2e9a00;
+  background-color: #bbe8a9;
+}
 /*
  * # Semantic UI - 2.3.1
  * https://github.com/Semantic-Org/Semantic-UI
