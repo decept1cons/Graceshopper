@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 import {Card, Icon, Image, Container} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {fetchCart} from '../store/cartReducer'
 class UserAccount extends Component {
+  componentDidMount() {
+    this.props.fetch(this.props.user.id)
+  }
   render() {
-    console.log(this.props.product)
     return (
       <div>
         <Container textAlign="center">This is your account page </Container>
@@ -22,19 +25,23 @@ class UserAccount extends Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <a>
-              <Icon name="user" />
-              You have 0 item(s) in cart.
-            </a>
+            <Link to="/cart">
+              <i aria-hidden="true" className="shop icon" />
+              You have {this.props.userCart.cart.length} item(s) in cart.
+            </Link>
           </Card.Content>
         </Card>
       </div>
     )
   }
 }
-const mapState = ({userReducer}) => {
+const dispatchState = reducer => {
+  return {fetch: id => reducer(fetchCart(id))}
+}
+const mapState = ({userReducer, cartReducer}) => {
   return {
-    user: userReducer
+    user: userReducer,
+    userCart: cartReducer
   }
 }
-export default connect(mapState)(UserAccount)
+export default connect(mapState, dispatchState)(UserAccount)
