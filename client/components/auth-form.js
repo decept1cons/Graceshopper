@@ -45,6 +45,14 @@ const AuthForm = ({name, displayName, handleSubmit, error}) => (
     >
       <Icon name="google plus" /> Login with Google
     </Button>
+    <Button
+      color="facebook"
+      method="get"
+      action="/auth/facebook"
+      href="/auth/facebook"
+    >
+      <Icon name="facebook" /> Facebook
+    </Button>
   </Container>
 )
 const mapLogin = ({userReducer}) => {
