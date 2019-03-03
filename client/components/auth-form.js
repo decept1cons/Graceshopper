@@ -37,11 +37,14 @@ const AuthForm = ({name, displayName, handleSubmit, error}) => (
     <Link to="/guestHome">
       <Button>Continue as Guest</Button>
     </Link>
-    <form method="get" action="/auth/google">
-      <Button color="google plus" href="/auth/google">
-        <Icon name="google plus" /> Login with Google
-      </Button>
-    </form>
+    <Button
+      method="get"
+      action="/auth/google"
+      color="google plus"
+      href="/auth/google"
+    >
+      <Icon name="google plus" /> Login with Google
+    </Button>
   </Container>
 )
 const mapLogin = ({userReducer}) => {

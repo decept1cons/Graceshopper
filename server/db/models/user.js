@@ -27,6 +27,11 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://ca.slack-edge.com/T024FPYBQ-UCNSF8XQ9-e95cd59b37b0-512'
   }
 })
 

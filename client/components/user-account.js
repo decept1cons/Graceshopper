@@ -4,12 +4,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 class UserAccount extends Component {
   render() {
-    console.log(this.props.product)
+    // console.log(this.props.user)
     return (
       <div>
-        <Container textAlign="center">This is your account page </Container>
+        <Container textAlign="center">Welcome back!!!</Container>
         <Card size="medium" centered>
-          <Image src="https://ca.slack-edge.com/T024FPYBQ-UCNSF8XQ9-e95cd59b37b0-512" />
+          <Image src={this.props.user.imageUrl} />
           <Card.Content>
             <Card.Header>{this.props.user.email}</Card.Header>
             <Card.Meta>
