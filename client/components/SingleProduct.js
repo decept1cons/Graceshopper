@@ -43,9 +43,28 @@ export default withRouter(
                 animated="vertical"
                 id="singleButton"
                 onClick={() => {
-                  this.props.addProduct(product.id, userId, product.price)
-                  if (!ls.get(count)) {
-                    ls.set(count++, product)
+                  if (this.props.userId) {
+                    this.props.addProduct(product.id, userId, product.price)
+                  } else {
+                    const cart = Object.values(window.localStorage)
+                    const someData = cart.map(item => JSON.parse(item))
+                    let newProduct = Object.assign({}, product)
+                    if (someData.length) {
+                      //not zero
+                      let filteredData = someData.filter(internalObject => {
+                        if (internalObject.id === newProduct.id) {
+                          return internalObject
+                        }
+                      })
+                      newProduct.quantity = filteredData.length
+                        ? filteredData[0].quantity + 1
+                        : 1
+
+                      ls.set(newProduct.id, newProduct)
+                    } else {
+                      newProduct.quantity = 1
+                      ls.set(newProduct.id, newProduct)
+                    }
                   }
                 }}
               >
