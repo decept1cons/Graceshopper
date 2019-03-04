@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom'
 import {fetchCart} from '../store/cartReducer'
 import CartItem from './CartItem'
 import {Table} from 'semantic-ui-react'
+
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   userId: userReducer.id,
   cart: cartReducer.cart
@@ -18,30 +19,32 @@ export default withRouter(
     class Cart extends Component {
       componentDidMount() {
         const {getCart, userId} = this.props
-        console.log('here', userId)
         getCart(userId)
       }
       render() {
         console.log(this.props.cart)
-        return (
-          <Table singleLine>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell />
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Price</Table.HeaderCell>
-                <Table.HeaderCell>Quantity</Table.HeaderCell>
-                <Table.HeaderCell>Remove</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
+        //START OF T&T's CODE ----------------------------------------------------------------------
+        if (this.props.userId) {
+          return (
+            <Table singleLine>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell />
+                  <Table.HeaderCell>Name</Table.HeaderCell>
+                  <Table.HeaderCell>Price</Table.HeaderCell>
+                  <Table.HeaderCell>Quantity</Table.HeaderCell>
+                  <Table.HeaderCell>Remove</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
 
-            <Table.Body>
-              {this.props.cart.map(cartObj => (
-                <CartItem cart={cartObj} key={cartObj.id} />
-              ))}
-            </Table.Body>
-          </Table>
-        )
+              <Table.Body>
+                {this.props.cart.map(cartObj => (
+                  <CartItem cart={cartObj} key={cartObj.id} />
+                ))}
+              </Table.Body>
+            </Table>
+          )
+        }
       }
     }
   )

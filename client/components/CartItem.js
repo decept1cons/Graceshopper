@@ -12,35 +12,35 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default withRouter(
-  connect(null, mapDispatchToProps)(
-    ({
-      cart: {
-        price,
-        quantity,
-        productId,
-        userId,
-        product: {name, type, imageUrl},
-        id
-      },
-      removeProduct,
-      getCart
-    }) => {
-      console.log('CARTITEM', name)
+  connect(null, mapDispatchToProps)(props => {
+    if (!props.cart.userId) {
       return (
         <Table.Row>
           <Table.Cell>
-            <Link to={`/products/${productId}`}>
-              <img className="cartItemImage" src={imageUrl} />
-            </Link>
+            <img className="cartItemImage" src={props.cart.imageUrl} />
           </Table.Cell>
-          <Table.Cell>{name}</Table.Cell>
-          <Table.Cell>{`$${price}`}</Table.Cell>
-          <Table.Cell>{quantity}</Table.Cell>
+          <Table.Cell>{props.cart.name}</Table.Cell>
+          <Table.Cell>{`$${props.cart.price}`}</Table.Cell>
+          <Table.Cell>{props.cart.quantity}</Table.Cell>
+          <Table.Cell>
+            <Button content="Remove" />
+          </Table.Cell>
+        </Table.Row>
+      )
+    } else {
+      return (
+        <Table.Row>
+          <Table.Cell>
+            <img className="cartItemImage" src={props.cart.product.imageUrl} />
+          </Table.Cell>
+          <Table.Cell>{props.cart.product.name}</Table.Cell>
+          <Table.Cell>{`$${props.cart.price}`}</Table.Cell>
+          <Table.Cell>{props.cart.quantity}</Table.Cell>
           <Table.Cell>
             <Button
               content="Remove"
               onClick={() => {
-                removeProduct(id, userId)
+                props.removeProduct(props.cart.id, props.cart.userId)
                 //getCart(userId)
               }}
             />
@@ -48,5 +48,5 @@ export default withRouter(
         </Table.Row>
       )
     }
-  )
+  })
 )
