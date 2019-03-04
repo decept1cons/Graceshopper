@@ -2,11 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {fetchCart} from '../store/cartReducer'
-import CartItem from './CartItem'
-import {Table} from 'semantic-ui-react'
 import CartTable from './CartTable'
+import {Button, Icon} from 'semantic-ui-react'
 
-import {Table, Button, Icon} from 'semantic-ui-react'
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   userId: userReducer.id,
   cart: cartReducer.cart
