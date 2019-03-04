@@ -8,6 +8,7 @@ import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import ProductGrid from './components/ProductGrid'
 import UserAccount from './components/user-account'
+import OfflineCart from './components/OfflineCart'
 import Checkout from './components/Checkout'
 /**
  * COMPONENT
@@ -45,6 +46,8 @@ export default class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/guestHome" component={ProductGrid} />
+        <Route path="/products/:id" component={SingleProduct} />
+        <Route path="/guestCart" component={OfflineCart} />
       </Switch>
     )
   }
