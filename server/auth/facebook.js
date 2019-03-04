@@ -58,10 +58,7 @@ passport.use(
 //   }
 // })
 
-router.get(
-  '/',
-  passport.authenticate('facebook', {scope: ['email', 'user_photos']})
-)
+router.get('/', passport.authenticate('facebook', {scope: ['email']}))
 
 router.get(
   '/callback',
