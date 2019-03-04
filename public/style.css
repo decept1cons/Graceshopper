@@ -159,8 +159,16 @@ form div {
   justify-content: center;
   align-items: center;
 }
-#singleProductButtonId {
+#singleButton {
   background-color: #ff9900;
+  color: #fff;
+}
+#iconCheck {
+  color: #2e9a00;
+}
+.completedOrderDisplay {
+  border-color: #2e9a00;
+  background-color: #bbe8a9;
 }
 
 .search-bar {

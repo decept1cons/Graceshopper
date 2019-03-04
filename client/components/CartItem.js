@@ -3,12 +3,20 @@ import React from 'react'
 import {Table, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {removeProductFromCart, fetchCart} from '../store/cartReducer'
+import {me} from '../store/userReducer'
+import {
+  removeProductFromCart,
+  fetchCart,
+  updateQuantityOfCartItem
+} from '../store/cartReducer'
 
 const mapDispatchToProps = dispatch => ({
   removeProduct: (orderId, userId) =>
     dispatch(removeProductFromCart(orderId, userId)),
-  getCart: id => dispatch(fetchCart(id))
+  getCart: id => dispatch(fetchCart(id)),
+  updateQuantity: (orderId, userId, newQuantity) =>
+    dispatch(updateQuantityOfCartItem(orderId, userId, newQuantity)),
+  loadInitialData: () => dispatch(me())
 })
 
 export default withRouter(
@@ -36,6 +44,30 @@ export default withRouter(
           <Table.Cell>{props.cart.product.name}</Table.Cell>
           <Table.Cell>{`$${props.cart.price}`}</Table.Cell>
           <Table.Cell>{props.cart.quantity}</Table.Cell>
+          <Table.Cell>
+            <Button
+              content="+"
+              onClick={() => {
+                props.updateQuantity(
+                  props.cart.id,
+                  props.cart.userId,
+                  props.cart.quantity + 1
+                )
+                props.getCart(props.cart.userId)
+              }}
+            />
+            <Button
+              content="-"
+              onClick={() => {
+                props.updateQuantity(
+                  props.cart.id,
+                  props.cart.userId,
+                  props.cart.quantity - 1
+                )
+                props.getCart(props.cart.userId)
+              }}
+            />
+          </Table.Cell>
           <Table.Cell>
             <Button
               content="Remove"

@@ -37,8 +37,8 @@ const strategy = new GoogleStrategy(
     const imageUrl = profile.photos[0].value
 
     User.findOrCreate({
-      where: {googleId},
-      defaults: {name, email, imageUrl}
+      where: {email},
+      defaults: {name, googleId, imageUrl}
     })
       .then(([user]) => done(null, user))
       .catch(done)

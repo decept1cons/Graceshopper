@@ -5,7 +5,7 @@ router.get('/:id', async (req, res, next) => {
   const userId = req.params.id
   try {
     const response = await Order.findAll({
-      where: {userId},
+      where: {userId, status: 'OPEN'},
       include: [
         {
           model: Product,
@@ -30,15 +30,15 @@ const updateQuantity = async obj => {
   )
   return updatedOrder
 }
+
 router.post('/:id', async (req, res, next) => {
   const {price, productId, userId} = req.body
   try {
     let [instance, created] = await Order.findOrCreate({
-      where: {price, productId, userId}
+      where: {price, productId, userId, status: 'OPEN'}
     })
     //findOrCreate returns an array with 0th as instance, 1st as boolean representing created (T) or found (F)
     if (!created) updateQuantity(instance)
-
     const eagerLoadedOrder = await Order.findOne({
       where: {id: instance.id},
       include: [
@@ -54,6 +54,33 @@ router.post('/:id', async (req, res, next) => {
     console.log(error)
     next(error)
   }
+})
+router.put('/:id', (req, res, next) => {
+  const userId = req.params.id
+  const gsId = userId + '-' + Date.now()
+  Order.update(
+    {status: 'PAID', gsId},
+    {
+      where: {userId, status: 'OPEN'},
+      returning: true
+    }
+  )
+    .then(([numRow, rows]) => res.json(rows[0]))
+    .catch(next)
+})
+
+router.put('/:id/item/:orderId', (req, res, next) => {
+  const {newQuantity} = req.body
+  const id = req.params.orderId
+  Order.update(
+    {quantity: newQuantity},
+    {
+      where: {id},
+      returning: true
+    }
+  )
+    .then(([numRow, rows]) => res.json(rows))
+    .catch(next)
 })
 router.delete('/:id/item/:orderId', (req, res, next) => {
   const id = req.params.orderId
