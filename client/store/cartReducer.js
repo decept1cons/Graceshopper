@@ -13,7 +13,8 @@ const HANDLE_ORDER = 'HANDLE_ORDER'
  */
 const initialState = {
   cart: [],
-  mostRecentOrder: {}
+  mostRecentOrder: {},
+  quantity: 0
 }
 
 /**
@@ -86,11 +87,13 @@ export default function(state = initialState, action) {
       if (action.create) {
         return {
           ...state,
+          quantity: state.quantity + 1,
           cart: [...state.cart, action.eagerLoadedOrder]
         }
       } else {
         return {
           ...state,
+          quantity: state.quantity + 1,
           cart: state.cart.map(order => {
             if (order.id === action.eagerLoadedOrder.id) {
               order = action.eagerLoadedOrder
