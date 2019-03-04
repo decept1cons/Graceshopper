@@ -33,11 +33,12 @@ export default class Routes extends Component {
     return isLoggedIn ? (
       <Switch>
         {/* Routes placed here are only available after logging in */}
-        <Route path="/home" component={UserHome} />
-        <Route path="/products/:id" component={SingleProduct} />
+
         <Route exact path="/cart" component={Cart} />
         <Route path="/account" component={UserAccount} />
         <Route path="/cart/checkout" component={Checkout} />
+        <Route path="/home" component={UserHome} />
+        <Route path="/products/:id" component={SingleProduct} />
       </Switch>
     ) : (
       <Switch>

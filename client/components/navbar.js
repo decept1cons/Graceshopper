@@ -5,16 +5,19 @@ import {Link, withRouter} from 'react-router-dom'
 import {logout} from '../store'
 import LoggedInNavBar from './LoggedInNavBar'
 import LoggedOutNavBar from './LoggedOutNavBar'
+import {fetchCart} from '../store/cartReducer'
 import {_calcQuantity} from '../helperfuncs/calcQuantity'
 
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   user: userReducer,
   // isLoggedIn: !!userReducer.id,
-  cart: cartReducer.cart
+  cart: cartReducer.cart,
+  quantity: cartReducer.quantity
 })
 
 const mapDispatch = dispatch => ({
-  handleClick: () => dispatch(logout())
+  handleClick: () => dispatch(logout()),
+  getCart: id => dispatch(fetchCart(id))
 })
 export default withRouter(
   connect(mapStateToProps, mapDispatch)(
@@ -22,25 +25,28 @@ export default withRouter(
       state = {
         quantity: 0
       }
-      componentDidMount() {
-        console.log('mount', this.props.cart, new Date())
-        const quantity = _calcQuantity(this.props.cart)
-        this.setState({quantity})
+      componentDidUpdate(nextProps) {
+        if (nextProps.user.id && !this.props.user.id) {
+          nextProps.getCart(nextProps.user.id)
+        }
       }
 
       render() {
-        const {handleClick, isLoggedIn, user} = this.props
-        console.log('render', this.props.cart, new Date())
+        const {handleClick, isLoggedIn, quantity, cart, user} = this.props
+        // const quantity = _calcQuantity(cart) ? _calcQuantity(cart) : 0
+        console.log('quant', quantity)
+
+        console.log('render', cart, new Date())
         return (
           <nav>
             {isLoggedIn ? (
               <LoggedInNavBar
                 handleClick={handleClick}
                 email={user.email}
-                quantity={this.state.quantity}
+                quantity={quantity}
               />
             ) : (
-              <LoggedOutNavBar quantity={this.state.quantity} />
+              <LoggedOutNavBar quantity={quantity} />
             )}
           </nav>
         )
