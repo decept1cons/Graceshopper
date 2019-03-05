@@ -21,10 +21,9 @@ const {User} = require('../db/models')
 //   console.log('Google client ID / secret not found. Skipping Google OAuth.')
 // } else {
 const googleConfig = {
-  clientID:
-    '1075301925285-0abvksjvgtfnhsgpsigtlkplh685inhf.apps.googleusercontent.com',
-  clientSecret: 'fnGSi858zQXyp4sx9j8hreC-',
-  callbackURL: 'auth/google/callback'
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.GOOGLE_CALLBACK
 }
 
 const strategy = new GoogleStrategy(
