@@ -4,8 +4,7 @@ import {withRouter} from 'react-router-dom'
 import {fetchProduct} from '../store/productReducer'
 import {addProductToCart} from '../store/cartReducer'
 import {Button, Icon} from 'semantic-ui-react'
-import ls from 'local-storage'
-let count = 0
+import {_mutateCartButton} from '../helperfuncs/mutateCartButton'
 
 const mapStateToProps = ({userReducer, productReducer}) => ({
   userId: userReducer.id,
@@ -25,6 +24,9 @@ export default withRouter(
         this.props.getProduct(this.props.match.params.id)
       }
 
+      reRender = () => {
+        this.forceUpdate()
+      }
       render() {
         const {product, userId} = this.props
         return (
@@ -39,34 +41,20 @@ export default withRouter(
               </div>
             </div>
             <div className="singleProductButton">
+              {/*(userId, product, addProduct, cart)*/}
               <Button
                 animated="vertical"
                 id="singleButton"
-                onClick={() => {
-                  if (this.props.userId) {
-                    this.props.addProduct(product.id, userId, product.price)
-                  } else {
-                    const cart = Object.values(window.localStorage)
-                    const someData = cart.map(item => JSON.parse(item))
-                    let newProduct = Object.assign({}, product)
-                    if (someData.length) {
-                      //not zero
-                      let filteredData = someData.filter(internalObject => {
-                        if (internalObject.id === newProduct.id) {
-                          return internalObject
-                        }
-                      })
-                      newProduct.quantity = filteredData.length
-                        ? filteredData[0].quantity + 1
-                        : 1
-
-                      ls.set(newProduct.id, newProduct)
-                    } else {
-                      newProduct.quantity = 1
-                      ls.set(newProduct.id, newProduct)
-                    }
-                  }
-                }}
+                onClick={() =>
+                  _mutateCartButton(
+                    userId,
+                    product,
+                    {addProduct: this.props.addProduct},
+                    null,
+                    userId ? null : 'add',
+                    this.reRender
+                  )
+                }
               >
                 <Button.Content hidden>
                   <Icon name="shop" />

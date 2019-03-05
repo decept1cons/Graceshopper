@@ -36,6 +36,7 @@ export default withRouter(
           searchWord: event.target.value
         })
       }
+
       render() {
         return (
           <div className="search-bar">

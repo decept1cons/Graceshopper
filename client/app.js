@@ -14,19 +14,31 @@ const mapDispatch = dispatch => {
     }
   }
 }
+
 export default withRouter(
   connect(mapState, mapDispatch)(
     class App extends Component {
+      state = {
+        time: 0
+      }
       componentDidMount() {
         console.log('APPmount', new Date())
         this.props.loadInitialData()
+        this.interval = setInterval(
+          () => this.setState({time: Date.now()}),
+          1000
+        )
       }
+
+      componentWillUnmount() {
+        clearInterval(this.interval)
+      }
+
       render() {
-        console.log('APPRender', new Date())
         const {isLoggedIn} = this.props
         return (
           <div id="appContainer">
-            <Navbar isLoggedIn={isLoggedIn} />
+            <Navbar isLoggedIn={isLoggedIn} time={this.state.time} />
             <Routes isLoggedIn={isLoggedIn} />
           </div>
         )

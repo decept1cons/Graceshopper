@@ -3,6 +3,7 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
+
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
@@ -34,7 +35,6 @@ export const changeQuantity = cartItem => ({type: CHANGE_QUANTITY, cartItem})
  */
 
 export const fetchCart = id => async dispatch => {
-  console.log('fetch', id)
   const {data} = await axios.get(`/api/cart/${id}`)
   return dispatch(getCart(data))
 }
@@ -121,7 +121,7 @@ export default function(state = initialState, action) {
     case HANDLE_ORDER:
       return {
         ...state,
-        mostRecentOrder: {gsId: action.newOrder[0].gsId, cart: state.cart},
+        mostRecentOrder: {gsId: action.newOrder.gsId, cart: state.cart},
         cart: []
       }
     default:

@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react'
+import React, {Component} from 'react'
 import {Table, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
@@ -9,6 +9,8 @@ import {
   fetchCart,
   updateQuantityOfCartItem
 } from '../store/cartReducer'
+import {_mutateCartButton} from '../helperfuncs/mutateCartButton'
+import {_removeProductButton} from '../helperfuncs/removeProductButton'
 
 const mapDispatchToProps = dispatch => ({
   removeProduct: (orderId, userId) =>
@@ -20,65 +22,99 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default withRouter(
-  connect(null, mapDispatchToProps)(props => {
-    if (!props.cart.userId) {
-      return (
-        <Table.Row>
-          <Table.Cell>
-            <img className="cartItemImage" src={props.cart.imageUrl} />
-          </Table.Cell>
-          <Table.Cell>{props.cart.name}</Table.Cell>
-          <Table.Cell>{`$${props.cart.price}`}</Table.Cell>
-          <Table.Cell>{props.cart.quantity}</Table.Cell>
-          <Table.Cell>
-            <Button content="Remove" />
-          </Table.Cell>
-        </Table.Row>
-      )
-    } else {
-      return (
-        <Table.Row>
-          <Table.Cell>
-            <img className="cartItemImage" src={props.cart.product.imageUrl} />
-          </Table.Cell>
-          <Table.Cell>{props.cart.product.name}</Table.Cell>
-          <Table.Cell>{`$${props.cart.price}`}</Table.Cell>
-          <Table.Cell>{props.cart.quantity}</Table.Cell>
-          <Table.Cell>
-            <Button
-              content="+"
-              onClick={() => {
-                props.updateQuantity(
-                  props.cart.id,
-                  props.cart.userId,
-                  props.cart.quantity + 1
-                )
-                props.getCart(props.cart.userId)
-              }}
-            />
-            <Button
-              content="-"
-              onClick={() => {
-                props.updateQuantity(
-                  props.cart.id,
-                  props.cart.userId,
-                  props.cart.quantity - 1
-                )
-                props.getCart(props.cart.userId)
-              }}
-            />
-          </Table.Cell>
-          <Table.Cell>
-            <Button
-              content="Remove"
-              onClick={() => {
-                props.removeProduct(props.cart.id, props.cart.userId)
-                //getCart(userId)
-              }}
-            />
-          </Table.Cell>
-        </Table.Row>
-      )
+  connect(null, mapDispatchToProps)(
+    class CartItem extends Component {
+      render() {
+        return (
+          <Table.Row>
+            <Table.Cell>
+              <Link to={`/products/${this.props.cartItem.id}`}>
+                <img
+                  className="cartItemImage"
+                  src={
+                    this.props.isLoggedIn
+                      ? this.props.cartItem.product.imageUrl
+                      : this.props.cartItem.imageUrl
+                  }
+                />
+              </Link>
+            </Table.Cell>
+
+            <Table.Cell textAlign="center">
+              {this.props.isLoggedIn
+                ? this.props.cartItem.product.name
+                : this.props.cartItem.name}
+            </Table.Cell>
+            <Table.Cell textAlign="center">{`$${
+              this.props.cartItem.price
+            }`}</Table.Cell>
+            <Table.Cell textAlign="center">
+              <div id="quantContainer">
+                <div id="quantTextContainer">
+                  {this.props.cartItem.quantity}
+                </div>
+                <div id="quantButtonContainer">
+                  <Button
+                    content="▲"
+                    id="quantButton"
+                    disabled={this.props.disabled}
+                    onClick={() =>
+                      _mutateCartButton(
+                        this.props.cartItem.userId,
+                        this.props.cartItem,
+                        {
+                          updateQuantity: this.props.updateQuantity,
+                          getCart: this.props.getCart
+                        },
+                        this.props.isLoggedIn ? this.props.cartItem : null,
+                        'add',
+                        this.props.reRender
+                      )
+                    }
+                  />
+                  <Button
+                    content="▼"
+                    id="quantButton"
+                    disabled={this.props.disabled}
+                    onClick={() =>
+                      _mutateCartButton(
+                        this.props.cartItem.userId,
+                        this.props.cartItem,
+                        {
+                          updateQuantity: this.props.updateQuantity,
+                          getCart: this.props.getCart
+                        },
+                        this.props.isLoggedIn ? this.props.cartItem : null,
+                        'subtract',
+                        this.props.reRender
+                      )
+                    }
+                  />
+                </div>
+              </div>
+            </Table.Cell>
+            <Table.Cell textAlign="center">
+              {`$${Math.round(
+                this.props.cartItem.price * this.props.cartItem.quantity
+              )}`}
+            </Table.Cell>
+            <Table.Cell textAlign="center">
+              <Button
+                content="Remove Row"
+                disabled={this.props.disabled}
+                onClick={() => {
+                  _removeProductButton(
+                    this.props.isLoggedIn,
+                    this.props.removeProduct,
+                    this.props.cartItem,
+                    this.props.reRender
+                  )
+                }}
+              />
+            </Table.Cell>
+          </Table.Row>
+        )
+      }
     }
-  })
+  )
 )
