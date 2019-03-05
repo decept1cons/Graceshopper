@@ -65,14 +65,14 @@ form div {
   height: 100vh;
   width: 100vw;
   overflow: auto;
-  background-color: rgb(252, 221, 168);
+  background-color: rgb(255, 255, 255);
 }
 #productGridContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin: auto;
-  background-color: rgb(252, 221, 168);
+  background-color: rgb(255, 255, 255);
   justify-content: space-around;
   height: 80%;
   width: 80%;
