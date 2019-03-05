@@ -9,10 +9,13 @@ const db = require('./db')
 const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
+const bodyParser = require('body-parser')
 const socketio = require('socket.io')
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
+const stripe = require('stripe')('sk_test_o1odC5hupgeawrhC1f0WmBnL')
 
-app.use(require('body-parser').text())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -91,20 +94,24 @@ const createApp = () => {
   })
 
   //payment
-  app.post('/charge', async (req, res) => {
-    try {
-      await stripe.charges.create({
-        amount: 2,
+  app.post('/charge', (req, res) => {
+    const token = req.body.stripeToken
+    const charge = req.body.chargeAmount
+    stripe.charges.create(
+      {
+        amount: charge,
         currency: 'usd',
         description: 'An example charge',
-        source: req.body
-      })
-      res.redirect('/home')
-    } catch (err) {
-      res.status(500).end()
-    }
+        source: token
+      },
+      function(err, charge) {
+        if (err && err.type === 'StripeCardError') {
+          console.log('card declined')
+        }
+      }
+    )
+    res.redirect('/home')
   })
-
   // error handling endware
   app.use((err, req, res, next) => {
     console.error(err)

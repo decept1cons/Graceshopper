@@ -10,21 +10,22 @@
       href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
     />
     <link rel=icon href=/favicon.png>
+    <form action="/charge" method="post">
+      <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_G2RJFwB910TtMxLwmOvumISO"
+        data-amount="333"
+        data-name="Terry"
+        data-description="Widget"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto"
+        data-zip-code="true">
+      </script>
+      <input type="hidden" name="chargeAmount" value="333">
+    </form>
     <script defer src="/bundle.js"></script>
-    <script defer src="https://js.stripe.com/v3/"></script>
   </head>
-  <form action="your-server-side-code" method="POST">
-    <!-- <script
-      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
-      data-amount="999"
-      data-name="Stripe.com"
-      data-description="Widget"
-      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-      data-locale="auto"
-      data-zip-code="true">
-    </script> -->
-  </form>
+
   <body>
     <div id="app"></div>
   </body>

@@ -10,7 +10,6 @@ import ProductGrid from './components/ProductGrid'
 import UserAccount from './components/user-account'
 import OfflineCart from './components/OfflineCart'
 import Checkout from './components/Checkout'
-import CheckoutForm from './components/CheckoutForm'
 
 /**
  * COMPONENT
@@ -40,7 +39,6 @@ export default class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route path="/account" component={UserAccount} />
         <Route path="/cart/checkout" component={Checkout} />
-        <Route path="/payment" component={CheckoutForm} />
       </Switch>
     ) : (
       <Switch>
