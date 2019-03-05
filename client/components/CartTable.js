@@ -3,21 +3,50 @@
 import React from 'react'
 import {Table} from 'semantic-ui-react'
 import CartItem from './CartItem'
-export default ({cart}) => (
+import {_calcTotal} from '../helperfuncs/calcTotal'
+import {_calcQuantity} from '../helperfuncs/calcQuantity'
+export default ({cart, disabled, reRender, isLoggedIn}) => (
   <Table singleLine>
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell />
-        <Table.HeaderCell>Name</Table.HeaderCell>
-        <Table.HeaderCell>Price</Table.HeaderCell>
-        <Table.HeaderCell>Quantity</Table.HeaderCell>
-        <Table.HeaderCell>Buttons</Table.HeaderCell>
-        <Table.HeaderCell>Remove</Table.HeaderCell>
+        <Table.HeaderCell textAlign="center">Name</Table.HeaderCell>
+        <Table.HeaderCell textAlign="center">Item Price</Table.HeaderCell>
+        <Table.HeaderCell textAlign="center">Item Quantity</Table.HeaderCell>
+        <Table.HeaderCell textAlign="center">Item Total</Table.HeaderCell>
+        <Table.HeaderCell textAlign="center">Remove Row</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
 
     <Table.Body>
-      {cart.map(cartObj => <CartItem cart={cartObj} key={cartObj.id} />)}
+      {cart
+        .sort(
+          (a, b) =>
+            isLoggedIn ? a.product.name < b.product.name : a.name < b.name
+        )
+        .map(cartObj => (
+          <CartItem
+            cartItem={cartObj}
+            disabled={disabled}
+            key={cartObj.id}
+            reRender={reRender}
+            isLoggedIn={isLoggedIn}
+          />
+        ))}
     </Table.Body>
+    <Table.Footer>
+      <Table.Row>
+        <Table.HeaderCell>Total</Table.HeaderCell>
+        <Table.HeaderCell />
+        <Table.HeaderCell />
+        <Table.HeaderCell textAlign="center">
+          {_calcQuantity(cart)}
+        </Table.HeaderCell>
+        <Table.HeaderCell textAlign="center">{`$${_calcTotal(
+          cart
+        )}`}</Table.HeaderCell>
+        <Table.HeaderCell />
+      </Table.Row>
+    </Table.Footer>
   </Table>
 )

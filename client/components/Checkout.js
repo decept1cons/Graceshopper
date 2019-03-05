@@ -55,7 +55,7 @@ export default withRouter(
                 <Button.Content hidden>Place Order</Button.Content>
               </Button>
             </Link>
-            <h1>{_calcTotal(this.props.cart, 'price')}</h1>
+            <h1>{_calcTotal(this.props.cart)}</h1>
             {this.state.submit ? <Redirect to="/home" /> : null}
           </div>
         )

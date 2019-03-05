@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {withRouter, Link} from 'react-router-dom'
 import {auth} from '../store'
 import {Form, Input, Button, Container, Divider, Icon} from 'semantic-ui-react'
+import {getUserFromEmail} from '../store/userReducer'
 
 const AuthForm = ({name, displayName, handleSubmit, error}) => (
   <Container textAlign="center">
@@ -34,7 +35,7 @@ const AuthForm = ({name, displayName, handleSubmit, error}) => (
       {error && error.response && <div> {error.response.data} </div>}
     </Form>
     <Divider />
-    <Link to="/guestHome">
+    <Link to="/home">
       <Button>Continue as Guest</Button>
     </Link>
     <Button
@@ -71,17 +72,16 @@ const mapSignup = ({userReducer}) => {
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
-    }
+const mapDispatch = dispatch => ({
+  handleSubmit(evt) {
+    evt.preventDefault()
+    const formName = evt.target.name
+    const email = evt.target.email.value
+    const password = evt.target.password.value
+    dispatch(auth(email, password, formName))
+    // dispatch(getUserFromEmail(email))
   }
-}
+})
 
 export const Login = withRouter(connect(mapLogin, mapDispatch)(AuthForm))
 export const Signup = withRouter(connect(mapSignup, mapDispatch)(AuthForm))

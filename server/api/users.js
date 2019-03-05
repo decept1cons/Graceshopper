@@ -10,7 +10,19 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-
+router.get('/me/:email', async (req, res, next) => {
+  const email = req.params.email
+  try {
+    const user = await User.findOne({where: {email}})
+    if (user) {
+      res.json(user)
+    } else {
+      console.error('No user found!!!') // check this latter!
+    }
+  } catch (err) {
+    next(err)
+  }
+})
 router.get('/:id', async (req, res, next) => {
   const id = req.params.id
   try {

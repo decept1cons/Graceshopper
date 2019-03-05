@@ -3,16 +3,14 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import {logout} from '../store'
-import LoggedInNavBar from './LoggedInNavBar'
-import LoggedOutNavBar from './LoggedOutNavBar'
+import NavBarFields from './NavBarFields'
 import {fetchCart} from '../store/cartReducer'
 import {_calcQuantity} from '../helperfuncs/calcQuantity'
 
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   user: userReducer,
   // isLoggedIn: !!userReducer.id,
-  cart: cartReducer.cart,
-  quantity: cartReducer.quantity
+  cart: cartReducer.cart
 })
 
 const mapDispatch = dispatch => ({
@@ -22,33 +20,18 @@ const mapDispatch = dispatch => ({
 export default withRouter(
   connect(mapStateToProps, mapDispatch)(
     class NavBar extends Component {
-      state = {
-        quantity: 0
-      }
-      componentDidUpdate(nextProps) {
-        if (nextProps.user.id && !this.props.user.id) {
-          nextProps.getCart(nextProps.user.id)
-        }
-      }
-
       render() {
-        const {handleClick, isLoggedIn, quantity, cart, user} = this.props
-        // const quantity = _calcQuantity(cart) ? _calcQuantity(cart) : 0
-        console.log('quant', quantity)
-
-        console.log('render', cart, new Date())
+        const {handleClick, isLoggedIn, cart, user} = this.props
+        const currCart = isLoggedIn
+          ? cart
+          : Object.values(window.localStorage).map(item => JSON.parse(item))
+        const finalQuantity = _calcQuantity(currCart)
         return (
-          <nav>
-            {isLoggedIn ? (
-              <LoggedInNavBar
-                handleClick={handleClick}
-                email={user.email}
-                quantity={quantity}
-              />
-            ) : (
-              <LoggedOutNavBar quantity={quantity} />
-            )}
-          </nav>
+          <NavBarFields
+            handleClick={handleClick}
+            email={isLoggedIn ? user.email : null}
+            quantity={finalQuantity}
+          />
         )
       }
     }

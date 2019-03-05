@@ -14,7 +14,14 @@ a {
 .navLink:hover {
   color: #ff9900;
 }
-
+#cartLabel {
+  background-color: #ff9900;
+  color: #fff;
+}
+#cartLabel:hover {
+  background-color: #fff;
+  color: #000;
+}
 label {
   display: block;
 }
@@ -174,7 +181,25 @@ form div {
 .search-bar {
   text-align: center;
 }
-
+#quantButton {
+  padding: 0;
+}
+#quantButtonContainer {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#quantTextContainer {
+  display: flex;
+  align-items: center;
+}
+#quantContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 /*
  * # Semantic UI - 2.3.1
  * https://github.com/Semantic-Org/Semantic-UI

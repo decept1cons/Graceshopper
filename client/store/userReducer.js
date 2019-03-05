@@ -1,9 +1,11 @@
 import axios from 'axios'
 import history from '../history'
+import {fetchCart} from '../store/cartReducer'
 
 /**
  * ACTION TYPES
  */
+
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
@@ -23,11 +25,23 @@ const removeUser = () => ({type: REMOVE_USER})
  */
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
+    const {data} = await axios.get('/auth/me')
+    let user = getUser(data || defaultUser)
+    console.log('thunk', user, new Date())
+    let promise1 = await dispatch(user)
+    console.log('promise1', user)
+    console.log(user)
+    let promise2 = await dispatch(fetchCart(promise1.user.id))
+    console.log(promise2)
+    await Promise.all([promise1, promise2])
   } catch (err) {
     console.error(err)
   }
+}
+
+export const getUserFromEmail = email => async dispatch => {
+  const {data} = await axios.get(`/me/${email}`)
+  return dispatch(getUser(data))
 }
 
 export const auth = (email, password, method) => async dispatch => {

@@ -19,13 +19,24 @@ export default withRouter(
     class Cart extends Component {
       componentDidMount() {
         const {getCart, userId} = this.props
-
-        getCart(userId)
+        if (userId) getCart(userId)
+      }
+      reRender = () => {
+        this.forceUpdate()
       }
       render() {
+        const finalCart = this.props.userId
+          ? this.props.cart
+          : Object.values(window.localStorage).map(item => JSON.parse(item))
+
         return (
           <div>
-            <CartTable cart={this.props.cart} />
+            <CartTable
+              cart={finalCart}
+              isLoggedIn={!!this.props.userId}
+              reRender={this.reRender}
+              disabled={false}
+            />
             <Link to="/cart/checkout">
               <Button animated="vertical" id="singleButton">
                 <Button.Content visible>

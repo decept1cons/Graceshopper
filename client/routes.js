@@ -8,8 +8,9 @@ import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import ProductGrid from './components/ProductGrid'
 import UserAccount from './components/user-account'
-import OfflineCart from './components/OfflineCart'
+import PreviousOrders from './components/PreviousOrders'
 import Checkout from './components/Checkout'
+
 /**
  * COMPONENT
  */
@@ -33,22 +34,22 @@ export default class Routes extends Component {
     return isLoggedIn ? (
       <Switch>
         {/* Routes placed here are only available after logging in */}
-
+        s
         <Route exact path="/cart" component={Cart} />
         <Route path="/account" component={UserAccount} />
         <Route path="/cart/checkout" component={Checkout} />
+        <Route path="/orders" component={PreviousOrders} />
         <Route path="/home" component={UserHome} />
         <Route path="/products/:id" component={SingleProduct} />
       </Switch>
     ) : (
       <Switch>
-        {/* Routes placed here are available to all visitors
-        <Route exact path="/" component={isLoggedIn ? UserHome : Login} />*/}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/guestHome" component={ProductGrid} />
+        <Route path="/home" component={ProductGrid} />
         <Route path="/products/:id" component={SingleProduct} />
-        <Route path="/guestCart" component={OfflineCart} />
+        <Route exact path="/cart" component={Cart} />
+        <Route path="/cart/checkout" component={Checkout} />
       </Switch>
     )
   }
