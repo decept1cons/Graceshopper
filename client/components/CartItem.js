@@ -40,7 +40,7 @@ export default withToastManager(
                     autoDismiss: true
                   })
                 }}
-                content="x"
+                content="Remove"
               />
             </Table.Cell>
           </Table.Row>
@@ -85,6 +85,10 @@ export default withToastManager(
               <Button
                 content="Remove"
                 onClick={() => {
+                  props.toastManager.add(`Item Removed`, {
+                    appearance: 'success',
+                    autoDismiss: true
+                  })
                   props.removeProduct(props.cart.id, props.cart.userId)
                   //getCart(userId)
                 }}
