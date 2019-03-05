@@ -38,27 +38,29 @@ export default withRouter(
       }
       render() {
         return (
-          <div className="search-bar">
-            <div className="ui icon input">
-              <input
-                onChange={this.handleChange}
-                value={this.state.searchWord}
-                name="search"
-                type="text"
-                placeholder="Search..."
-              />
-              <i aria-hidden="true" className="search circular link icon" />
-            </div>
-            <div id="productGridContainer">
-              {this.props.products
-                .filter(item => {
-                  return item.name
-                    .toLowerCase()
-                    .includes(this.state.searchWord.toLowerCase())
-                })
-                .map(productObj => (
-                  <ProductCard key={productObj.id} product={productObj} />
-                ))}
+          <div>
+            <div className="search-bar">
+              <div className="ui icon input">
+                <input
+                  onChange={this.handleChange}
+                  value={this.state.searchWord}
+                  name="search"
+                  type="text"
+                  placeholder="Search..."
+                />
+                <i aria-hidden="true" className="search circular link icon" />
+              </div>
+              <div id="productGridContainer">
+                {this.props.products
+                  .filter(item => {
+                    return item.name
+                      .toLowerCase()
+                      .includes(this.state.searchWord.toLowerCase())
+                  })
+                  .map(productObj => (
+                    <ProductCard key={productObj.id} product={productObj} />
+                  ))}
+              </div>
             </div>
           </div>
         )

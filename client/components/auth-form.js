@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import {withRouter, Link} from 'react-router-dom'
 import {auth} from '../store'
 import {Form, Input, Button, Container, Divider, Icon} from 'semantic-ui-react'
-
-const AuthForm = ({name, displayName, handleSubmit, error}) => (
+import {withToastManager} from 'react-toast-notifications'
+const AuthForm = ({name, displayName, handleSubmit, error, toastManager}) => (
   <Container textAlign="center">
     <Form onSubmit={handleSubmit} name={name}>
       <Form.Group widths="equal">
@@ -31,7 +31,7 @@ const AuthForm = ({name, displayName, handleSubmit, error}) => (
         control={Button}
         content="Submit"
       />
-      {error && error.response && <div> {error.response.data} </div>}
+      {error && error.response && error.response.data}
     </Form>
     <Divider />
     <Link to="/guestHome">
@@ -83,8 +83,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = withRouter(connect(mapLogin, mapDispatch)(AuthForm))
-export const Signup = withRouter(connect(mapSignup, mapDispatch)(AuthForm))
+export const Login = withRouter(
+  connect(mapLogin, mapDispatch)(withToastManager(AuthForm))
+)
+export const Signup = withRouter(
+  connect(mapSignup, mapDispatch)(withToastManager(AuthForm))
+)
 
 /**
  * PROP TYPES
