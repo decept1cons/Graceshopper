@@ -10,6 +10,9 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
+
+app.use(require('body-parser').text())
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -85,6 +88,21 @@ const createApp = () => {
   // sends index.html
   app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+  })
+
+  //payment
+  app.post('/charge', async (req, res) => {
+    try {
+      await stripe.charges.create({
+        amount: 2,
+        currency: 'usd',
+        description: 'An example charge',
+        source: req.body
+      })
+      res.redirect('/home')
+    } catch (err) {
+      res.status(500).end()
+    }
   })
 
   // error handling endware

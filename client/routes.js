@@ -11,7 +11,7 @@ import UserAccount from './components/user-account'
 import OfflineCart from './components/OfflineCart'
 import Checkout from './components/Checkout'
 import CheckoutForm from './components/CheckoutForm'
-import {Elements, StripeProvider} from 'react-stripe-elements'
+
 /**
  * COMPONENT
  */
@@ -40,11 +40,7 @@ export default class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route path="/account" component={UserAccount} />
         <Route path="/cart/checkout" component={Checkout} />
-        <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
-          <Elements>
-            <Route path="/payment" component={CheckoutForm} />
-          </Elements>
-        </StripeProvider>
+        <Route path="/payment" component={CheckoutForm} />
       </Switch>
     ) : (
       <Switch>

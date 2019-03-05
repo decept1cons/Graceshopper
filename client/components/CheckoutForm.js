@@ -1,26 +1,26 @@
 import React, {Component} from 'react'
-import {CardElement, injectStripe} from 'react-stripe-elements'
-import {Container} from 'semantic-ui-react'
+
+import {Button} from 'semantic-ui-react'
 
 class CheckoutForm extends Component {
-  constructor(props) {
-    super(props)
-    this.submit = this.submit.bind(this)
+  componentDidMount() {
+    const script = document.createElement('script')
+    script.src = 'https://checkout.stripe.com/checkout.js'
+    script.className = 'stripe-button'
+    script.dataset.key = 'pk_test_TYooMQauvdEDq54NiTphI7jx'
+    script.dataset.amount = '999'
+    script.dataset.name = 'Stripe.com'
+    script.dataset.description = 'Widget'
+    script.dataset.image =
+      'https://stripe.com/img/documentation/checkout/marketplace.png'
+    script.dataset.locale = 'auto'
+    script.dataset.zipCode = 'true' // Note camelCase!
+    let form = document.getElementById('THEFORM')
+    form.appendChild(script)
   }
-
-  async submit(ev) {
-    // User clicked submit
-  }
-
   render() {
-    return (
-      <Container className="checkout" textAlign="center">
-        <p>Would you like to complete the purchase?</p>
-        <CardElement />
-        <button onClick={this.submit}>Send</button>
-      </Container>
-    )
+    return <div id="THEFORM" />
   }
 }
 
-export default injectStripe(CheckoutForm)
+export default CheckoutForm
