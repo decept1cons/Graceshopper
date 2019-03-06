@@ -3,7 +3,6 @@ import React from 'react'
 import {Item, Button} from 'semantic-ui-react'
 
 export default ({gsId}) => {
-  console.log('gsid', gsId)
   return (
     <Item className="completedOrderDisplay">
       <Item.Image
@@ -12,8 +11,7 @@ export default ({gsId}) => {
       />
 
       <Item.Content verticalAlign="middle">
-        <Item.Header>{gsId}</Item.Header>
-        <Item.Description>' '</Item.Description>
+        <Item.Header>{`OrderId ${gsId || 23421427642}`}</Item.Header>
         <Item.Extra>
           <Button floated="right">Action</Button>
         </Item.Extra>

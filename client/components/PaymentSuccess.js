@@ -35,7 +35,6 @@ export default withRouter(
       submit = () => {
         const {submitOrder, userId} = this.props
         if (userId) {
-          console.log('here')
           submitOrder(userId)
         } else {
           ls.clear()
