@@ -26,7 +26,7 @@ export default withToastManager(
           this.props.getProduct(this.props.match.params.id)
         }
         render() {
-          const {product, userId, addProduct} = this.props
+          const {product, userId, addProduct, toastManager} = this.props
           return (
             <div className="singleProductContainer">
               <div className="singleProductInner">
@@ -40,6 +40,7 @@ export default withToastManager(
                   <AnimatedButton
                     userId={userId}
                     product={product}
+                    toastManager={toastManager}
                     addProduct={addProduct}
                     displayStr="Add To Cart"
                     displayIcon="shop"

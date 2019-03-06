@@ -70,7 +70,7 @@ form div {
 #productGridContainer {
   display: flex;
   flex-direction: row;
-  padding-top: 10vh;
+  padding-top: 5vh;
   flex-wrap: wrap;
   margin: auto;
   background-color: rgb(255, 255, 255);

@@ -7,6 +7,7 @@ import {_calcTotal} from '../helperfuncs/calcTotal'
 import {PaymentButton} from './paymentButton'
 import AnimatedButton from './AnimatedButton'
 import {Table, Button, Icon} from 'semantic-ui-react'
+import ls from 'local-storage'
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   userId: userReducer.id,
   cart: cartReducer.cart
@@ -19,12 +20,13 @@ const mapDispatchToProps = dispatch => ({
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(
-    class Checkout extends Component {
+    class PaymentSuccess extends Component {
       state = {
         submit: false,
         payment: false
       }
       componentDidMount() {
+        ls.remove('lsid')
         const {getCart, userId} = this.props
 
         if (userId) getCart(userId)
@@ -32,12 +34,15 @@ export default withRouter(
 
       submit = () => {
         const {submitOrder, userId} = this.props
-        submitOrder(userId)
+        if (userId) {
+          console.log('here')
+          submitOrder(userId)
+        } else {
+          ls.clear()
+        }
         this.setState({submit: true})
       }
-      paymentSuccess = () => {
-        this.setState({payment: true})
-      }
+
       render() {
         const finalCart = this.props.userId
           ? this.props.cart
@@ -47,14 +52,15 @@ export default withRouter(
             <CartTable
               cart={finalCart}
               isLoggedIn={!!this.props.userId}
-              disabled={false}
+              disabled={true}
             />
-            <div>
-              <PaymentButton
-                amount={_calcTotal(this.props.cart)}
-                payment={this.paymentSuccess}
-              />
-            </div>
+            <Button animated="vertical" id="singleButton" onClick={this.submit}>
+              <Button.Content hidden>
+                <Icon name="box" />
+                <Icon corner name="dollar sign" id="iconCheck" />
+              </Button.Content>
+              <Button.Content visible>Place Order</Button.Content>
+            </Button>
             {this.state.submit ? <Redirect to="/home" /> : null}
           </div>
         )

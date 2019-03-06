@@ -6,6 +6,7 @@ import {logout} from '../store'
 import NavBarFields from './NavBarFields'
 import {fetchCart} from '../store/cartReducer'
 import {_calcQuantity} from '../helperfuncs/calcQuantity'
+import ls from 'local-storage'
 
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   user: userReducer,
@@ -21,6 +22,7 @@ export default withRouter(
   connect(mapStateToProps, mapDispatch)(
     class NavBar extends Component {
       render() {
+        ls.remove('lsid')
         const {handleClick, isLoggedIn, cart, user} = this.props
         const currCart = isLoggedIn
           ? cart

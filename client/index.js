@@ -10,7 +10,7 @@ import {ToastProvider} from 'react-toast-notifications'
 import './socket'
 
 ReactDOM.render(
-  <ToastProvider>
+  <ToastProvider autoDismissTimeout={2000} placement="top-center">
     <Provider store={store}>
       <Router history={history}>
         <App />

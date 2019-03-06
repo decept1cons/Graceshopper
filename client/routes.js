@@ -11,6 +11,7 @@ import UserAccount from './components/user-account'
 import PreviousOrders from './components/PreviousOrders'
 import Checkout from './components/Checkout'
 import CompletedOrderDisplay from './components/CompletedOrderDisplay'
+import PaymentSuccess from './components/PaymentSuccess'
 
 export default class Routes extends Component {
   render() {
@@ -20,18 +21,19 @@ export default class Routes extends Component {
       <Switch>
         {/* Routes placed here are only available after logging in */}
         <Route exact path="/" render={() => <Redirect to="/home" />} />
+        <Route path="/paymentsuccess" component={PaymentSuccess} />
         <Route exact path="/cart" component={Cart} />
         <Route path="/account" component={UserAccount} />
         <Route path="/cart/checkout" component={Checkout} />
         <Route path="/orders" component={PreviousOrders} />
         <Route path="/home" component={UserHome} />
         <Route path="/products/:id" component={SingleProduct} />
-        <Route path="/paysuccess" component={CompletedOrderDisplay} />
       </Switch>
     ) : (
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route path="/login" component={Login} />
+        <Route path="/paymentsuccess" component={PaymentSuccess} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={ProductGrid} />
         <Route path="/products/:id" component={SingleProduct} />

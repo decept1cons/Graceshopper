@@ -2,18 +2,32 @@
 import React from 'react'
 import {Button, Icon} from 'semantic-ui-react'
 import {_mutateCartButton} from '../helperfuncs/mutateCartButton'
-export default ({userId, product, addProduct, displayStr, displayIcon}) => (
+export default ({
+  userId,
+  product,
+  addProduct,
+  displayStr,
+  displayIcon,
+  toastManager
+}) => (
   <div className="singleProductButton">
     <Button
       animated="vertical"
       id="singleButton"
       onClick={() =>
-        _mutateCartButton(
-          userId,
-          product,
-          {addProduct},
-          null,
-          userId ? null : 'add'
+        toastManager.add(
+          `${product.name} added to cart`,
+          {
+            appearance: 'success',
+            autoDismiss: true
+          },
+          _mutateCartButton(
+            userId,
+            product,
+            {addProduct},
+            null,
+            userId ? null : 'add'
+          )
         )
       }
     >
