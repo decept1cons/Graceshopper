@@ -10,7 +10,6 @@ import ls from 'local-storage'
 
 const mapStateToProps = ({userReducer, cartReducer}) => ({
   user: userReducer,
-  // isLoggedIn: !!userReducer.id,
   cart: cartReducer.cart
 })
 

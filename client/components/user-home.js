@@ -8,7 +8,6 @@ const mapState = ({userReducer, cartReducer}) => ({
 })
 
 export default connect(mapState)(({email, mostRecentOrder}) => {
-  console.log(mostRecentOrder)
   return (
     <div>
       {Object.keys(mostRecentOrder).length ? (

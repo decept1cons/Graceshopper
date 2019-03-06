@@ -26,7 +26,6 @@ export default withRouter(
         getOrders(user.id)
       }
       render() {
-        console.log(_groupOrders(this.props.orders))
         return (
           <div>
             <Container textAlign="center">Welcome back!!!</Container>

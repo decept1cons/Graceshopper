@@ -38,12 +38,6 @@ export default withRouter(
         })
       }
 
-      // getDropdown = event => {
-      //   console.log(event)
-      //   this.setState({
-      //     dropdown: event.target.value
-      //   })
-      // }
       render() {
         return (
           <div className="search-bar">
@@ -57,14 +51,7 @@ export default withRouter(
               />
               <i aria-hidden="true" className="search circular link icon" />
             </div>
-            {/* <Dropdown
-              placeholder="Type"
-              fluid
-              multiple
-              selection
-              options={typeObj}
-              onChange={this.getDropdown}
-            /> */}
+
             <div id="productGridContainer">
               {this.props.products
                 .filter(item => {
