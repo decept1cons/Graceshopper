@@ -21,24 +21,32 @@ export default withRouter(
         const {getCart, userId} = this.props
         if (userId) getCart(userId)
       }
-      reRender = () => {
-        this.forceUpdate()
-      }
+
       render() {
         const finalCart = this.props.userId
           ? this.props.cart
           : Object.values(window.localStorage).map(item => JSON.parse(item))
-
         return (
-          <div>
+          <div className="cart">
             <CartTable
               cart={finalCart}
               isLoggedIn={!!this.props.userId}
-              reRender={this.reRender}
               disabled={false}
             />
-            <Link to="/cart/checkout">
-              <Button animated="vertical" id="singleButton">
+            {finalCart.length ? (
+              <Link to="/cart/checkout">
+                <Button animated="vertical" id="singleButton">
+                  <Button.Content visible>
+                    <Icon.Group size="large">
+                      <Icon name="shop" />
+                      <Icon corner name="check circle" id="iconCheck" />
+                    </Icon.Group>
+                  </Button.Content>
+                  <Button.Content hidden>Checkout</Button.Content>
+                </Button>
+              </Link>
+            ) : (
+              <Button disabled animated="vertical" id="singleButton">
                 <Button.Content visible>
                   <Icon.Group size="large">
                     <Icon name="shop" />
@@ -47,7 +55,7 @@ export default withRouter(
                 </Button.Content>
                 <Button.Content hidden>Checkout</Button.Content>
               </Button>
-            </Link>
+            )}
           </div>
         )
       }

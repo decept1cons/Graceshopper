@@ -10,7 +10,6 @@ export const _onlineCartFunctions = (
   identifier
 ) => {
   if (identifier) {
-    console.log(cart)
     functions.updateQuantity(cart.id, cart.userId, compFunc(cart.quantity, 1))
     functions.getCart(cart.userId)
   } else {
@@ -40,7 +39,6 @@ export const _offlineCartFunctions = (newProduct, compFunc, identifier) => {
       : 1
     ls.set(newProduct.id, newProduct)
   } else {
-    console.log('here')
     newProduct.quantity = 1
     ls.set(newProduct.id, newProduct)
   }

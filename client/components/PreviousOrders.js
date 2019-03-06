@@ -25,13 +25,13 @@ export default withRouter(
       }
       render() {
         let orders = _groupOrders(this.props.orders)
-        let orderList = []
         if (orders) {
-          for (let time in orders) {
-            console.log(time)
-            orderList.push(
+          return Object.keys(orders)
+            .sort()
+            .reverse()
+            .map(time => (
               <div key={time}>
-                <div>{time}</div>
+                <div>{new Date(+time).toString()}</div>
                 <CartTable
                   cart={orders[time]}
                   key={orders[time].id}
@@ -39,9 +39,7 @@ export default withRouter(
                   disabled={true}
                 />
               </div>
-            )
-          }
-          return orderList
+            ))
         } else {
           return <div>No orders</div>
         }

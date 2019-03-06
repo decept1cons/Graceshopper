@@ -70,6 +70,7 @@ form div {
 #productGridContainer {
   display: flex;
   flex-direction: row;
+  padding-top: 10vh;
   flex-wrap: wrap;
   margin: auto;
   background-color: rgb(252, 221, 168);
@@ -101,8 +102,8 @@ form div {
   justify-content: center;
   border: 1px solid black;
   margin: auto;
-  height: 90%;
-  width: 90%;
+  height: 80%;
+  width: 80%;
 }
 .productCardImageContainer {
   display: flex;
@@ -129,9 +130,11 @@ form div {
   width: 10vw;
 }
 .productTitle {
-  font-size: 2vw;
+  font-size: 1.5em;
+  font-weight: bold;
   text-align: center;
   color: #000;
+  padding-bottom: 4vh;
 }
 .productPrice {
   font-size: 1vw;
@@ -148,17 +151,63 @@ form div {
   display: flex;
   flex-direction: column;
   background-color: #ffffe7;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 80vh;
   width: 80vw;
 }
+.singleProductImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3vh;
+  padding-left: 3vh;
+  padding-bottom: 3vh;
+  width: 50%;
+}
+.singleProductImage {
+  max-height: 75%;
+  max-width: 100%;
+}
+.singleProductText {
+  padding-top: 3vh;
+  padding-right: 3vh;
+  text-align: center;
+}
+.singleProductText h1 {
+  font-size: 4.5em;
+}
+.singleProductText h3 {
+  font-size: 1.99em;
+}
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: 0;
+  height: 80vh;
+  width: 80vw;
+}
+.singleProductButton {
+  padding-top: 4vh;
+}
 .singleProductInner {
-  flex: 3;
+  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
+}
+.singleProductDescription {
+  flex-wrap: wrap;
+  padding-bottom: 10vh;
+  padding-left: 10vh;
+  padding-right: 10vh;
+  font-size: 1.25em;
 }
 .singleProductButton {
   flex: 1;

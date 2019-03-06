@@ -25,7 +25,7 @@ export default withRouter(
       componentDidMount() {
         const {getCart, userId} = this.props
 
-        getCart(userId)
+        if (userId) getCart(userId)
       }
 
       submit = () => {
@@ -39,7 +39,11 @@ export default withRouter(
           <div>
             <h1>Shipping</h1>
             <h1>Payment</h1>
-            <CartTable cart={this.props.cart} />
+            <CartTable
+              cart={this.props.cart}
+              isLoggedIn={!!this.props.userId}
+              disabled={false}
+            />
             <Link to="/cart/checkout">
               <Button
                 animated="vertical"
