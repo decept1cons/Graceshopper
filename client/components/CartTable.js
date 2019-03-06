@@ -20,10 +20,11 @@ export default ({cart, disabled, reRender, isLoggedIn}) => (
 
     <Table.Body>
       {cart
-        .sort(
-          (a, b) =>
-            isLoggedIn ? a.product.name < b.product.name : a.name < b.name
-        )
+        .sort((a, b) => {
+          let val1 = isLoggedIn ? a.product.name : a.name
+          let val2 = isLoggedIn ? b.product.name : b.name
+          return val1 < val2 ? -1 : 1
+        })
         .map(cartObj => (
           <CartItem
             cartItem={cartObj}

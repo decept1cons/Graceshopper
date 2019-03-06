@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import ls from 'local-storage'
 export class PaymentButton extends Component {
   componentDidMount() {
     const script = document.createElement('script')
@@ -14,9 +14,18 @@ export class PaymentButton extends Component {
     script.dataset.locale = 'auto'
     script.dataset.zipCode = 'true' // Note camelCase!
     let form = document.getElementById('THEFORM')
+    ls.remove('lsid')
     form.appendChild(script)
   }
   render() {
-    return <form id="THEFORM" method="post" action="/paysuccess" />
+    ls.remove('lsid')
+    return (
+      <form
+        id="THEFORM"
+        method="post"
+        action="/paymentsuccess"
+        onSubmit={event => event.preventDefault()}
+      />
+    )
   }
 }

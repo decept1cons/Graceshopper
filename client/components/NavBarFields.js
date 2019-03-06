@@ -24,6 +24,16 @@ export default ({handleClick, quantity, email}) => (
             </Button>
           </Button>
         </Link>
+        {email ? null : (
+          <Link className="navLink" to="/login">
+            <Icon name="sign-in" />
+          </Link>
+        )}
+        {email ? null : (
+          <Link className="navLink" to="/signup">
+            Sign Up
+          </Link>
+        )}
         <a href="#" className="navLink" onClick={handleClick}>
           <Icon name="sign-out" />
         </a>

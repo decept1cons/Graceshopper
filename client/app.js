@@ -22,7 +22,6 @@ export default withRouter(
         time: 0
       }
       componentDidMount() {
-        console.log('APPmount', new Date())
         this.props.loadInitialData()
         this.interval = setInterval(
           () => this.setState({time: Date.now()}),

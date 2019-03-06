@@ -53,7 +53,13 @@ export const auth = (email, password, method) => async dispatch => {
   }
 
   try {
-    dispatch(getUser(res.data))
+    let user = getUser(res.data)
+    let promise1 = await dispatch(user)
+    console.log('promise1', user)
+    console.log(user)
+    let promise2 = await dispatch(fetchCart(promise1.user.id))
+    console.log(promise2)
+    await Promise.all([promise1, promise2])
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

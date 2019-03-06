@@ -32,175 +32,145 @@ async function seed() {
 
   const fakeProducts = [
     {
-      name: 'Tracker',
-      type: 'Geo',
+      name: 'Geo Tracker',
+      type: 'Sedan',
       price: '23265.59',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://cdn04.carsforsale.com/3/285163/24814841/thumb/1160443039.jpg'
     },
     {
-      name: 'Impala',
-      type: 'Chevrolet',
+      name: 'Chevrolet Impala',
+      type: 'Mid-Size Car',
       price: '15542.74',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://www.chevrolet.com/content/dam/chevrolet/na/us/english/index/vehicles/2019/cars/impala/colorizer/01-images/2019-impala-2lz-g1m-colorizer.jpg?imwidth=1200'
     },
     {
-      name: '911',
-      type: 'Porsche',
+      name: 'Porsche 911',
+      type: 'Sports Car',
       price: '79241.07',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://4d5f5de51693cfc684da-cb2084ba1892d6fbfdf4063f34f87a51.ssl.cf1.rackcdn.com/thumbnails/WP0AA2A98JS106602/cad933efc0a434099e5ca5137b85bbf5.jpg'
     },
     {
-      name: 'Pacifica',
-      type: 'Chrysler',
+      name: 'Chrysler Pacifica',
+      type: 'Minivan',
       price: '23489.51',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://hips.hearstapps.com/hmg-prod/images/2018-chrysler-pacifica-mmp-1544038058.jpg'
     },
     {
-      name: 'X5 M',
-      type: 'BMW',
+      name: 'BMW X5 M',
+      type: 'SUV',
       price: '34264.34',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2017/07/2017-BMW-X5-M-110-1.jpg'
     },
     {
-      name: 'Tacoma Xtra',
-      type: 'Toyota',
+      name: 'Toyota Tacoma',
+      type: 'Pickup Truck',
       price: '19142.72',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/640x400/quality/80/https://s.aolcdn.com/commerce/autodata/images/USC90TOT092A021001.jpg'
     },
     {
-      name: 'Sentra',
-      type: 'Nissan',
+      name: 'Nissan Sentra',
+      type: 'Compact',
       price: '20720.80',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://upload.wikimedia.org/wikipedia/commons/0/01/2017_Nissan_Sentra_sedan_in_Yucca_Valley.jpg'
     },
     {
-      name: 'Pathfinder',
-      type: 'Nissan',
+      name: 'Nissan Pathfinder',
+      type: 'SUV',
       price: '29463.50',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://upload.wikimedia.org/wikipedia/commons/8/8b/2018_Nissan_Pathfinder_%28R52_MY18%29_ST-L_wagon_%282018-09-28%29_01.jpg'
     },
     {
-      name: 'CX-5',
-      type: 'Mazda',
+      name: 'Mazda CX-5',
+      type: 'SUV',
       price: '27564.40',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://www.tradecarview.com/cdn/cvmaterials/modelimages/gallery/5/244638.jpg'
     },
     {
-      name: 'Diablo',
-      type: 'Lamborghini',
+      name: 'Lamborghini Diablo',
+      type: 'Sports Car',
       price: '170030.69',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://content.autotrader.com/content/dam/autotrader/articles/OversteerImages/2018/August/dougDiablo/ed4c15743338471da52163cfb4774296.jpg'
     },
     {
-      name: '900',
-      type: 'Saab',
+      name: 'Saab 900',
+      type: 'Compact',
       price: '18849.89',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://cdn.bringatrailer.com/wp-content/uploads/2016/10/IMG_20170418_182151-940x705.jpg'
     },
     {
-      name: 'Escape',
-      type: 'Ford',
+      name: 'Ford Escape',
+      type: 'SUV',
       price: '22257.88',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://upload.wikimedia.org/wikipedia/commons/7/78/2018_Ford_Escape_%28ZG%29_Trend_AWD_wagon_%282018-10-29%29_01.jpg'
     },
     {
-      name: 'Ram',
-      type: 'Dodge',
+      name: 'Dodge Ram',
+      type: 'Pickup Truck',
       price: '18007.67',
-      imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+      imageUrl: 'https://img2.carmax.com/img/vehicles/16766111/1/385.jpg'
     },
     {
-      name: 'ES 350 FSport',
-      type: 'Lexus',
+      name: 'Lexus ES 350',
+      type: 'Luxury',
       price: '45585.57',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/USC60LEC161A021001.jpg'
     },
     {
-      name: '3500',
-      type: 'GMC',
+      name: 'GMC 3500',
+      type: 'Pickup Truck',
       price: '20556.84',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://www.gmc.com/content/dam/gmc/na/us/english/index/shared-assets/jellybeans/2019/sierra/sierra-hd/sierra-2500/2019-sierra-2500-dark-slate-metallic.jpg?imwidth=600'
     },
     {
-      name: 'Dakota',
-      type: 'Dodge',
+      name: 'Dodge Dakota',
+      type: 'Pickup Truck',
       price: '22630.25',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://media.ed.edmunds-media.com/dodge/dakota/2003/oem/2003_dodge_dakota_crew-cab-pickup_sport-plus_fq_oem_1_500.jpg'
     },
     {
-      name: 'Mustang',
-      type: 'Ford',
+      name: 'Ford Mustang',
+      type: 'Muscle',
       price: '24386.94',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://s.aolcdn.com/commerce/autodata/images/USC50FOC051B021001.jpg'
     },
     {
-      name: 'Grand Marquis',
-      type: 'Mercury',
+      name: 'Mercury Grand Marquis',
+      type: 'Luxury',
       price: '27235.79',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/640x400/quality/80/https://s.aolcdn.com/commerce/autodata/images/90MEGED1.jpg'
     },
     {
-      name: 'a3',
-      type: 'Audi',
+      name: 'Audi a3',
+      type: 'Sedan',
       price: '35006.47',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/17q3/685270/2017-audi-a3-20t-quattro-test-review-car-and-driver-photo-686688-s-original.jpg'
     },
     {
-      name: 'Passat',
-      type: 'Volkswagen',
+      name: 'Volkswagen Passat',
+      type: 'Station Wagon',
       price: '22598.57',
       imageUrl:
-        'https://www.shareicon.net/data/256x256/2015/09/14/100864_decepticon_512x512.png'
+        'http://consumerguide.com/wp-content/uploads/2014/07/95606131990101.jpg'
     }
   ]
-
-  const testGuy = await User.create({
-    email: 'whatatest@example.com',
-    password: 'password'
-  })
-
-  const car = await Product.create({
-    name: 'Dope car',
-    type: 'Ford',
-    price: 220.55
-  })
-
-  const test = await Order.create({
-    userId: 1,
-    productId: 1,
-    price: 1
-  })
-
-  const test2 = await Order.create({
-    userId: testGuy.id,
-    productId: car.id,
-    price: car.price
-  })
-
-  const test3 = await Order.create({
-    userId: testGuy.id,
-    productId: car.id,
-    price: car.price
-  })
 
   const users = await Promise.all(
     fakeUsers.map(eachUser => {

@@ -12,7 +12,7 @@ export default class ProductCard extends Component {
           </div>
           <div className="productCardText">
             <div className="productTitle">{product.name}</div>
-            <div className="productPrice">{product.price}</div>
+            <div className="productPrice">{`$${product.price}`}</div>
           </div>
         </div>
       </Link>

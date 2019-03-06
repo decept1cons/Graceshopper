@@ -29,7 +29,7 @@ export default withRouter(
         return (
           <Table.Row>
             <Table.Cell>
-              <Link to={`/products/${this.props.cartItem.id}`}>
+              <Link to={`/products/${this.props.cartItem.productId}`}>
                 <img
                   className="cartItemImage"
                   src={

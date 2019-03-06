@@ -3,7 +3,9 @@ import {connect} from 'react-redux'
 import {withRouter, NavLink} from 'react-router-dom'
 import ProductCard from './ProductCard'
 import {deleteProduct, fetchProducts} from '../store/productReducer'
-
+import {Dropdown} from 'semantic-ui-react'
+import {_getProductType} from '../helperfuncs/getProductType'
+import {typeObj} from '../helperfuncs/typeObj'
 const mapStateToProps = ({productReducer}) => ({
   products: productReducer.products
 })
@@ -18,25 +20,30 @@ export default withRouter(
       constructor() {
         super()
         this.state = {
-          searchWord: ''
+          searchWord: '',
+          dropdown: ''
         }
-        this.handleDelete = this.handleDelete.bind(this)
-        this.handleChange = this.handleChange.bind(this)
       }
       componentDidMount() {
         this.props.fetchProducts()
       }
-      handleDelete(product) {
+      handleDelete = product => {
         this.props.deleteProduct(product)
         this.props.fetchProducts()
       }
 
-      handleChange(event) {
+      handleChange = event => {
         this.setState({
           searchWord: event.target.value
         })
       }
 
+      // getDropdown = event => {
+      //   console.log(event)
+      //   this.setState({
+      //     dropdown: event.target.value
+      //   })
+      // }
       render() {
         return (
           <div className="search-bar">
@@ -50,6 +57,14 @@ export default withRouter(
               />
               <i aria-hidden="true" className="search circular link icon" />
             </div>
+            {/* <Dropdown
+              placeholder="Type"
+              fluid
+              multiple
+              selection
+              options={typeObj}
+              onChange={this.getDropdown}
+            /> */}
             <div id="productGridContainer">
               {this.props.products
                 .filter(item => {

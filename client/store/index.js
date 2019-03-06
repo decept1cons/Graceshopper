@@ -6,16 +6,24 @@ import userReducer from './userReducer'
 import productReducer from './productReducer'
 import cartReducer from './cartReducer'
 import orderReducer from './orderReducer'
+
+let store
 const reducer = combineReducers({
   userReducer,
   productReducer,
   cartReducer,
   orderReducer
 })
-const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-)
-const store = createStore(reducer, middleware)
+
+if (process.env.NODE_ENV === 'development') {
+  const middleware = composeWithDevTools(
+    applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+  )
+  store = createStore(reducer, middleware)
+} else {
+  const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
+  store = createStore(reducer, middleware)
+}
 
 export default store
 export * from './userReducer'

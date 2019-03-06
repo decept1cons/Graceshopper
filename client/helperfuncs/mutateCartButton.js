@@ -5,8 +5,7 @@ export const _mutateCartButton = (
   product,
   functions,
   cart,
-  identifier,
-  reRender
+  identifier
 ) => {
   let newProduct = Object.assign({}, product)
   let compFunc
@@ -24,5 +23,4 @@ export const _mutateCartButton = (
         identifier
       )
     : _offlineCartFunctions(newProduct, compFunc, identifier)
-  reRender()
 }
