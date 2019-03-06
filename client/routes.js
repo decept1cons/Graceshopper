@@ -10,6 +10,7 @@ import ProductGrid from './components/ProductGrid'
 import UserAccount from './components/user-account'
 import PreviousOrders from './components/PreviousOrders'
 import Checkout from './components/Checkout'
+import CompletedOrderDisplay from './components/CompletedOrderDisplay'
 
 export default class Routes extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class Routes extends Component {
         <Route path="/orders" component={PreviousOrders} />
         <Route path="/home" component={UserHome} />
         <Route path="/products/:id" component={SingleProduct} />
+        <Route path="/paysuccess" component={CompletedOrderDisplay} />
       </Switch>
     ) : (
       <Switch>

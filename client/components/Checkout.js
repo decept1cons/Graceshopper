@@ -4,6 +4,7 @@ import {withRouter, Link, Redirect} from 'react-router-dom'
 import {fetchCart, submitOrder} from '../store/cartReducer'
 import CartTable from './CartTable'
 import {_calcTotal} from '../helperfuncs/calcTotal'
+import {PaymentButton} from './paymentButton'
 
 import {Table, Button, Icon} from 'semantic-ui-react'
 const mapStateToProps = ({userReducer, cartReducer}) => ({
@@ -44,22 +45,9 @@ export default withRouter(
               isLoggedIn={!!this.props.userId}
               disabled={false}
             />
-            <Link to="/cart/checkout">
-              <Button
-                animated="vertical"
-                id="singleButton"
-                onClick={this.submit}
-              >
-                <Button.Content visible>
-                  <Icon.Group size="large">
-                    <Icon name="box" />
-                    <Icon corner name="dollar sign" id="iconCheck" />
-                  </Icon.Group>
-                </Button.Content>
-                <Button.Content hidden>Place Order</Button.Content>
-              </Button>
-            </Link>
-            <h1>{_calcTotal(this.props.cart)}</h1>
+            <div>
+              <PaymentButton amount={_calcTotal(this.props.cart)} />
+            </div>
             {this.state.submit ? <Redirect to="/home" /> : null}
           </div>
         )

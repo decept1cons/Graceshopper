@@ -5,8 +5,9 @@ import {withRouter, Link} from 'react-router-dom'
 import {auth} from '../store'
 import {Form, Input, Button, Container, Divider, Icon} from 'semantic-ui-react'
 import {getUserFromEmail} from '../store/userReducer'
+import {withToastManager} from 'react-toast-notifications'
 
-const AuthForm = ({name, displayName, handleSubmit, error}) => (
+const AuthForm = ({name, displayName, handleSubmit, error, toastManager}) => (
   <Container textAlign="center">
     <Form onSubmit={handleSubmit} name={name}>
       <Form.Group widths="equal">
@@ -35,6 +36,7 @@ const AuthForm = ({name, displayName, handleSubmit, error}) => (
       {error && error.response && <div> {error.response.data} </div>}
     </Form>
     <Divider />
+
     <Link to="/home">
       <Button>Continue as Guest</Button>
     </Link>
@@ -79,11 +81,16 @@ const mapDispatch = dispatch => ({
     const email = evt.target.email.value
     const password = evt.target.password.value
     dispatch(auth(email, password, formName))
+    dispatch(getUserFromEmail(email))
   }
 })
 
-export const Login = withRouter(connect(mapLogin, mapDispatch)(AuthForm))
-export const Signup = withRouter(connect(mapSignup, mapDispatch)(AuthForm))
+export const Login = withToastManager(
+  withRouter(connect(mapLogin, mapDispatch)(AuthForm))
+)
+export const Signup = withToastManager(
+  withRouter(connect(mapSignup, mapDispatch)(AuthForm))
+)
 
 /**
  * PROP TYPES
