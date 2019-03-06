@@ -51,7 +51,6 @@ export default withRouter(
               />
               <i aria-hidden="true" className="search circular link icon" />
             </div>
-
             <div id="productGridContainer">
               {this.props.products
                 .filter(item => {
